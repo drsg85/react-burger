@@ -1,7 +1,7 @@
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './appheader.module.css';
 
-function AppHeader() {
+const AppHeader = () => {
     return (
         <header>
             <nav className={styles.headernav}>

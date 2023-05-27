@@ -1,0 +1,12 @@
+.burgerIngredients {
+    width: 600px;
+    border-top: none;
+}
+
+.ingredientTabs {
+    display: flex;
+}
+
+.ingredientTabs > li {
+    list-style-type: none;
+}

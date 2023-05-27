@@ -12,3 +12,10 @@
   font-family: 'JetBrains Mono-Bold';
   src: url("../src/fonts/JetBrainsMono-Bold.woff2") format("woff");
 }
+
+main {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1240px;
+  margin: 0 auto;
+}
