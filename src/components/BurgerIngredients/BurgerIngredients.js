@@ -1,11 +1,12 @@
-import { Tab, CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burgerIngredients.module.css';
 import Ingredient from '../Ingredient/Ingredient';
 
 const BurgerIngredients = ({burgersData}) => {
 
     return (
-        <section className={styles.burgerIngredients}>
+        <section className={`${styles.burgerIngredients} pt-10`}>
+            <h1 className={`${styles.title} mb-5 text text_type_main-large`}>Соберите бургер</h1>
             <ul className={styles.ingredientTabs}>
                 <li>
                     <Tab>
@@ -23,7 +24,7 @@ const BurgerIngredients = ({burgersData}) => {
                     </Tab>
                 </li>
             </ul>
-            <div className={styles.content}>
+            <div className={`${styles.content} custom-scroll`}>
                 {burgersData.map((burgersIngredient) => <Ingredient burgersData={burgersIngredient} />)}
             </div>
         </section>
