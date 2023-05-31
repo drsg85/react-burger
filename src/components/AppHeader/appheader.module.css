@@ -1,4 +1,4 @@
-.headernav {
+.headerNav {
     display: flex;
     max-width: 1280px;
     margin: 0 auto;
@@ -6,18 +6,14 @@
     align-items: center;
 }
 
-.navlist {
+.headerNavList {
     display: flex;
     padding: 0;
     list-style: none;
 }
 
-.navlistitem {
+.navLink {
     display: flex;
-    align-items: center;
-    border-radius: 40px;
-}
-
-.navlink {
+    gap: 8px;
     text-decoration: none;
 }

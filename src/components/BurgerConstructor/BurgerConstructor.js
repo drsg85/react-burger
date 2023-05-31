@@ -5,7 +5,7 @@ const BurgerConstructor = ({burgersData}) => {
     const burgersIngredient = burgersData.map((burgersIngredient) => burgersIngredient);
 
     return(
-        <section className={`${styles.burgerconstructor} pt-25`}>
+        <section className={`${styles.burgerConstructor} pt-25`}>
             <div className={`${styles.content} mb-10`}>
                 <div>
                     <ConstructorElement 
@@ -16,7 +16,7 @@ const BurgerConstructor = ({burgersData}) => {
                         thumbnail={burgersIngredient[0].image}
                     />
                 </div>
-                <ul className={styles.contructorlist}>
+                <ul className={styles.constructorList}>
                     <li>
                     <ConstructorElement
                         text="Краторная булка N-200i (верх)"
