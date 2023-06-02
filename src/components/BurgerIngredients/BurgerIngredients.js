@@ -25,7 +25,7 @@ const BurgerIngredients = ({burgersData}) => {
                 </li>
             </ul>
             <div className={`${styles.content} custom-scroll`}>
-                {burgersData.map((burgersIngredient) => <Ingredient burgersData={burgersIngredient} key={burgersIngredient.id}/>)}
+                {burgersData.map((burgersIngredient) => <Ingredient burgersData={burgersIngredient} key={burgersIngredient._id}/>)}
             </div>
         </section>
     )

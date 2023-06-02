@@ -1,8 +1,8 @@
 import { ConstructorElement,CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burgerConstructor.module.css';
 
-const BurgerConstructor = ({burgersData}) => {
-    const burgersIngredient = burgersData.map((burgersIngredient) => burgersIngredient);
+const BurgerConstructor = ({constructorBurgersData}) => {
+    const burgersIngredient = constructorBurgersData.map((burgersIngredients) => burgersIngredients);
 
     return(
         <section className={`${styles.burgerConstructor} pt-25`}>
@@ -13,7 +13,7 @@ const BurgerConstructor = ({burgersData}) => {
                         isLocked={true}
                         text="Краторная булка N-200i (верх)"
                         price={200}
-                        thumbnail={burgersIngredient[0].image}
+                        thumbnail={burgersIngredient[1].image}
                     />
                 </div>
                 <ul className={styles.constructorList}>
