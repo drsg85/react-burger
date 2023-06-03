@@ -1,5 +1,6 @@
 import styles from './orderDetails.module.css';
-import checkImage from '../../img/ok.png'
+import checkImage from '../../img/ok.png';
+import PropTypes from 'prop-types';
 
 const OrderDetails = (props) => {
     return (
@@ -12,5 +13,9 @@ const OrderDetails = (props) => {
         </div>
     )
 }
+
+OrderDetails.propTypes = {
+    orderNumber: PropTypes.number,
+};
 
 export default OrderDetails;

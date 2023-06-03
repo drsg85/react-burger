@@ -3,6 +3,7 @@ import styles from './burgerConstructor.module.css';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
+import PropTypes from 'prop-types';
 
 const BurgerConstructor = ({constructorBurgersData}) => {
     const burgersIngredient = constructorBurgersData.map((burgersIngredients) => burgersIngredients);
@@ -75,6 +76,13 @@ const BurgerConstructor = ({constructorBurgersData}) => {
             </div>
         </section>
     )
-}
+
+};
+
+BurgerConstructor.propTypes = {
+    constructorBurgersData: PropTypes.shape({
+        image: PropTypes.string,
+    })
+};
 
 export default BurgerConstructor;

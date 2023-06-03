@@ -1,5 +1,6 @@
 import styles from '../Ingredient/ingredient.module.css';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
 const Ingredient = ({burgersData, onClick}) => {
     const {image, price, name} = burgersData;
@@ -8,7 +9,7 @@ const Ingredient = ({burgersData, onClick}) => {
         onClick(burgersData);
     }
 
-    return(
+    return (
         <>
             <div className={`${styles.ingredient} mb-8`} onClick={openClick}>
                 <img className={`${styles.image} mb-2`} src={`${image}`} alt={name}/>
@@ -19,5 +20,13 @@ const Ingredient = ({burgersData, onClick}) => {
         </>
     )
 }
+
+Ingredient.propTypes = {
+    price: PropTypes.string,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    onClick: PropTypes.func,
+    count: PropTypes.number,
+};
 
 export default Ingredient;
