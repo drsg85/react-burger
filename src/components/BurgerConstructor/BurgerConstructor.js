@@ -1,8 +1,21 @@
 import { ConstructorElement,CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burgerConstructor.module.css';
+import { useState } from 'react';
+import Modal from '../Modal/Modal';
+import OrderDetails from '../OrderDetails/OrderDetails';
 
 const BurgerConstructor = ({constructorBurgersData}) => {
     const burgersIngredient = constructorBurgersData.map((burgersIngredients) => burgersIngredients);
+    const [orderModal, setOrderModal] = useState(false);
+
+    const openOrderModal = () => {
+        setOrderModal(true);
+    };
+
+    const closeOrderModal = () => {
+        setOrderModal(false);
+    };
+
 
     return(
         <section className={`${styles.burgerConstructor} pt-25`}>
@@ -51,9 +64,14 @@ const BurgerConstructor = ({constructorBurgersData}) => {
             </div>
             <div className={styles.result}>
                 <p className={`${styles.sum} text text_type_digits-medium pr-10`}>610<span className={`${styles.currencyIcon} ml-2`}><CurrencyIcon type='primary'/></span></p>
-                <Button htmlType='button' type='primary' size='medium'>
+                <Button htmlType='button' type='primary' size='medium' onClick={openOrderModal}>
                     Оформить заказ
                 </Button>
+                {orderModal && (
+                    <Modal onClose={closeOrderModal}>
+                        <OrderDetails orderNumber='034536'/>
+                    </Modal>
+                )}
             </div>
         </section>
     )

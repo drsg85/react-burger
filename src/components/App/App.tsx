@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     getIngredients()
       .then(setIngredients)
-      .catch(() => alert('Произошла ошибка'))
+      .catch(() => alert('Что-то пошло не так'))
       .finally(() => setIsLoading(false))
   }, []);
 
