@@ -1,5 +1,6 @@
 import styles from './ingredientDetails.module.css';
 import PropTypes from 'prop-types';
+import burgersDataPropTypes from '../../utils/burgersDataPropTypes';
 
 const IngredientDetails = (props) => {
     const {ingredient} = props;
@@ -19,12 +20,7 @@ const IngredientDetails = (props) => {
 }
 
 IngredientDetails.propTypes = {
-    name: PropTypes.string,
-    image: PropTypes.string,
-    calories: PropTypes.string,
-    proteins: PropTypes.string,
-    fat: PropTypes.string,
-    carbohydrates: PropTypes.string,
+    ingredient: PropTypes.arrayOf(burgersDataPropTypes.isRequired),
 };
 
 export default IngredientDetails;

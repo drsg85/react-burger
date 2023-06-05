@@ -5,6 +5,7 @@ import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import burgersDataPropTypes from '../../utils/burgersDataPropTypes';
 
 const BurgerIngredients = ({burgersData}) => {
     const [ingredientDetailsModal, setingredientDetailsModal] = useState(null);
@@ -48,14 +49,7 @@ const BurgerIngredients = ({burgersData}) => {
 }
 
 BurgerIngredients.propTypes = {
-    burgersData: PropTypes.shape({
-        price: PropTypes.string,
-        name: PropTypes.string,
-        image: PropTypes.string,
-        _id: PropTypes.string,
-        onClick: PropTypes.func,
-        onClose: PropTypes.func,
-    })
+    burgersData: PropTypes.arrayOf(burgersDataPropTypes.isRequired),
 };
 
 export default BurgerIngredients;

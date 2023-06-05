@@ -1,6 +1,7 @@
 import styles from './orderDetails.module.css';
 import checkImage from '../../img/ok.png';
 import PropTypes from 'prop-types';
+import burgersDataPropTypes from '../../utils/burgersDataPropTypes';
 
 const OrderDetails = (props) => {
     return (
@@ -15,7 +16,7 @@ const OrderDetails = (props) => {
 }
 
 OrderDetails.propTypes = {
-    orderNumber: PropTypes.number,
+    orderNumber: PropTypes.arrayOf(burgersDataPropTypes.isRequired),
 };
 
 export default OrderDetails;

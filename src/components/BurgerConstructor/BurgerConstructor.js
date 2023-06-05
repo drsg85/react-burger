@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import PropTypes from 'prop-types';
+import burgersDataPropTypes from '../../utils/burgersDataPropTypes';
 
 const BurgerConstructor = ({constructorBurgersData}) => {
     const burgersIngredient = constructorBurgersData.map((burgersIngredients) => burgersIngredients);
@@ -80,9 +81,7 @@ const BurgerConstructor = ({constructorBurgersData}) => {
 };
 
 BurgerConstructor.propTypes = {
-    constructorBurgersData: PropTypes.shape({
-        image: PropTypes.string,
-    })
+    constructorBurgersData: PropTypes.arrayOf(burgersDataPropTypes.isRequired),
 };
 
 export default BurgerConstructor;
