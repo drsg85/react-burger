@@ -23,7 +23,7 @@ const Ingredient = ({burgersData, onClick}) => {
 }
 
 Ingredient.propTypes = {
-    burgersData: PropTypes.objectOf(burgersDataPropTypes.isRequired),
+    burgersData: PropTypes.shape(burgersDataPropTypes.isRequired),
     onClick: PropTypes.func.isRequired,
 };
 
