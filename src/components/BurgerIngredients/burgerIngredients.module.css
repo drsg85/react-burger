@@ -1,0 +1,22 @@
+.burgerIngredients {
+    width: 600px;
+    border-top: none;
+}
+
+.ingredientTabs {
+    display: flex;
+    padding: 0;
+}
+
+.ingredientTabs > li {
+    list-style-type: none;
+}
+
+.content {
+    display: flex;
+    height: 64vh;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+
