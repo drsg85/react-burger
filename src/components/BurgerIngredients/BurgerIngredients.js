@@ -4,11 +4,13 @@ import Ingredient from '../Ingredient/Ingredient';
 import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import burgersDataPropTypes from '../../utils/burgersDataPropTypes';
+import { useSelector } from 'react-redux';
+import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors';
 
-const BurgerIngredients = ({burgersData}) => {
+
+const BurgerIngredients = () => {
     const [ingredientDetailsModal, setingredientDetailsModal] = useState(null);
+    const { ingredients } = useSelector(ingredientsSelector);
 
     const closeModal = () => {
         setingredientDetailsModal(null)
@@ -36,7 +38,7 @@ const BurgerIngredients = ({burgersData}) => {
                     </li>
                 </ul>
                 <div className={`${styles.content} custom-scroll`}>
-                    {burgersData.map((burgersIngredient) => <Ingredient burgersData={burgersIngredient} key={burgersIngredient._id} onClick={() => setingredientDetailsModal(burgersIngredient)}/>)}
+                    {ingredients.map((burgersIngredient) => <Ingredient burgersData={burgersIngredient} key={burgersIngredient._id} onClick={() => setingredientDetailsModal(burgersIngredient)} />)}
                 </div>
             </section>
             {ingredientDetailsModal && (
@@ -47,9 +49,5 @@ const BurgerIngredients = ({burgersData}) => {
         </>
     )
 }
-
-BurgerIngredients.propTypes = {
-    burgersData: PropTypes.arrayOf(burgersDataPropTypes.isRequired),
-};
 
 export default BurgerIngredients;

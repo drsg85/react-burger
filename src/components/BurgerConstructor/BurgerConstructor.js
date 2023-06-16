@@ -1,14 +1,38 @@
-import { ConstructorElement,CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { ConstructorElement, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burgerConstructor.module.css';
 import { useState } from 'react';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import PropTypes from 'prop-types';
-import burgersDataPropTypes from '../../utils/burgersDataPropTypes';
+import { useSelector, useDispatch } from 'react-redux';
+import { constructorSelector } from '../../redux/selectors/constructorSelectors';
+import { removeIngredient } from '../../redux/actions/constructorActions';
 
-const BurgerConstructor = ({constructorBurgersData}) => {
-    const burgersIngredient = constructorBurgersData.map((burgersIngredients) => burgersIngredients);
+
+const BurgerConstructor = () => {
+    const { ingredients, bun } = useSelector(constructorSelector);
+    const dispatch = useDispatch();
+
+    const bunsPrice = bun ? bun.price * 2 : 0;
+    const inredientsPrice = ingredients ? ingredients.reduce((acc, inredient) => acc + inredient.price, 0) : 0;
+    const totalPrice = bunsPrice + inredientsPrice;
+
+    const handleRemoveIngredient = (id) => {
+        dispatch(removeIngredient(id));
+    }
+
+    const burgerIngredients = ingredients?.map((ingredient) => (
+        <li key={ingredient.uuid}>
+            <ConstructorElement
+                text={ingredient.name}
+                price={ingredient.price}
+                thumbnail={ingredient.image}
+                handleClose={() => handleRemoveIngredient(ingredient.uuid)}
+            />
+        </li>
+    ));
+
     const [orderModal, setOrderModal] = useState(false);
+
 
     const openOrderModal = () => {
         setOrderModal(true);
@@ -19,69 +43,49 @@ const BurgerConstructor = ({constructorBurgersData}) => {
     };
 
 
-    return(
+    return (
         <section className={`${styles.burgerConstructor} pt-25`}>
             <div className={`${styles.content} mb-10`}>
                 <div>
-                    <ConstructorElement 
-                        type="top"
-                        isLocked={true}
-                        text="Краторная булка N-200i (верх)"
-                        price={200}
-                        thumbnail={burgersIngredient[1].image}
-                    />
+                    {bun ? (
+                        <ConstructorElement
+                            type="top"
+                            isLocked={true}
+                            text={bun.name}
+                            price={bun.price}
+                            thumbnail={bun.image}
+                        />
+                    ) : (<h2>добавьте булку</h2>)}
                 </div>
                 <ul className={styles.constructorList}>
-                    <li>
-                    <ConstructorElement
-                        text="Краторная булка N-200i (верх)"
-                        price={50}
-                        thumbnail={burgersIngredient[3].image}
-                    />
-                    </li>
-                    <li>
-                    <ConstructorElement
-                        text="Краторная булка N-200i (верх)"
-                        price={50}
-                        thumbnail={burgersIngredient[4].image}
-                    />
-                    </li>
-                    <li>
-                    <ConstructorElement
-                        text="Краторная булка N-200i (верх)"
-                        price={50}
-                        thumbnail={burgersIngredient[5].image}
-                    />
-                    </li>
+                    {burgerIngredients || <h2>добавьте ингредиенты</h2>}
                 </ul>
                 <div>
-                    <ConstructorElement
-                        type="bottom"
-                        isLocked={true}
-                        text="Краторная булка N-200i (низ)"
-                        price={200}
-                        thumbnail={burgersIngredient[1].image}
-                    />
+                    {bun ? (
+                        <ConstructorElement
+                            type="bottom"
+                            isLocked={true}
+                            text={bun.name}
+                            price={bun.price}
+                            thumbnail={bun.image}
+                        />
+                    ) : (<h2>добавьте булку</h2>)}
                 </div>
             </div>
             <div className={styles.result}>
-                <p className={`${styles.sum} text text_type_digits-medium pr-10`}>610<span className={`${styles.currencyIcon} ml-2`}><CurrencyIcon type='primary'/></span></p>
+                <p className={`${styles.sum} text text_type_digits-medium pr-10`}>{totalPrice}<span className={`${styles.currencyIcon} ml-2`}><CurrencyIcon type='primary' /></span></p>
                 <Button htmlType='button' type='primary' size='medium' onClick={openOrderModal}>
                     Оформить заказ
                 </Button>
                 {orderModal && (
                     <Modal onClose={closeOrderModal}>
-                        <OrderDetails orderNumber='034536'/>
+                        <OrderDetails orderNumber='034536' />
                     </Modal>
                 )}
             </div>
         </section>
     )
 
-};
-
-BurgerConstructor.propTypes = {
-    constructorBurgersData: PropTypes.arrayOf(burgersDataPropTypes.isRequired),
 };
 
 export default BurgerConstructor;

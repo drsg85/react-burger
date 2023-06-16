@@ -36,8 +36,8 @@ function App() {
         <h2>Ошибка</h2> 
       ) : (
         <main>
-          <BurgerIngredients burgersData={ingredients}/>
-          <BurgerConstructor constructorBurgersData={ingredients}/>
+          <BurgerIngredients/>
+          <BurgerConstructor/>
         </main>
         )}
     </>
