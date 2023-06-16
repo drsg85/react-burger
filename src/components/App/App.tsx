@@ -1,31 +1,45 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
 import {getIngredients} from '../../utils/getUrl';
 
+import {
+  getIngredientsError,
+  getIngredientsRequest,
+  getIngredientsSuccess,
+} from '../../redux/actions/ingredientsActions';
+import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors';
+
 
 function App() {
-  const [ingredients, setIngredients] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const {isLoading, hasError, ingredients} = useSelector(ingredientsSelector);
 
   useEffect(() => {
+    dispatch(getIngredientsRequest)
+
     getIngredients()
-      .then(setIngredients)
-      .catch(() => alert('Что-то пошло не так'))
-      .finally(() => setIsLoading(false))
-  }, []);
+      .then((data) => {
+        dispatch(getIngredientsSuccess(data))
+      })
+      .catch(() => dispatch(getIngredientsError))
+  }, [dispatch]);
 
   return (
     <>
       <AppHeader />
-      {isLoading ? (<h2>something wrong</h2> // временное решение
+      {isLoading || !ingredients ? (
+        <h2>Загрузка...</h2>
+      ) : hasError ? (
+        <h2>Ошибка</h2> 
       ) : (
         <main>
           <BurgerIngredients burgersData={ingredients}/>
           <BurgerConstructor constructorBurgersData={ingredients}/>
-        </main>)
-      }
+        </main>
+        )}
     </>
   );
 }
