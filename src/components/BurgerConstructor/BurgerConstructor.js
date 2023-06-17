@@ -13,8 +13,8 @@ const BurgerConstructor = () => {
     const dispatch = useDispatch();
 
     const bunsPrice = bun ? bun.price * 2 : 0;
-    const inredientsPrice = ingredients ? ingredients.reduce((acc, inredient) => acc + inredient.price, 0) : 0;
-    const totalPrice = bunsPrice + inredientsPrice;
+    const ingredientsPrice = ingredients ? ingredients.reduce((acc, inredient) => acc + inredient.price, 0) : 0;
+    const totalPrice = bunsPrice + ingredientsPrice;
 
     const handleRemoveIngredient = (id) => {
         dispatch(removeIngredient(id));
