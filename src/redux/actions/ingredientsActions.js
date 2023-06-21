@@ -11,7 +11,7 @@ export const getIngredientsSuccess = (data) => ({
 
 export const getIngredientsError = { type: 'INGREDIENTS_ERROR' }
 
-export const getIngredients = (dispatch) => {
+export const getIngredients = () => (dispatch) => {
   dispatch(getIngredientsRequest)
 
   fetchIngredients()

@@ -14,7 +14,7 @@ export const fetchIngredients = () => {
         });
 };
 
-export const setOrder = (ingredients) => {
+export const fetchOrder = (ingredients) => {
     return fetch(ORDER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

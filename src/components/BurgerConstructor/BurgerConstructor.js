@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useDrop } from 'react-dnd'
+import { useDrop, useDrag } from 'react-dnd'
 import { ConstructorElement, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 // Redux
 import { setBun, setIngredient, removeIngredient } from '../../redux/actions/constructorActions';
 import { ingredientsListSelector, constructorSelector } from '../../redux/selectors';
 import { orderSelector } from '../../redux/selectors/orderSelectors';
-import { orderSuccess } from '../../redux/actions/orderActions';
+import { orderSuccess, setOrder } from '../../redux/actions/orderActions';
 
 // Utils
-import { setOrder } from '../../utils/getUrl';
 
 // Components
 import Modal from '../Modal/Modal';
@@ -18,6 +17,7 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 
 // Styles
 import styles from './burgerConstructor.module.css';
+import { BurgerItem } from './BurgerItem/BurgerItem';
 
 
 const BurgerConstructor = () => {
@@ -49,40 +49,25 @@ const BurgerConstructor = () => {
         }
     }
 
-    const handleRemoveIngredient = (id) => {
-        dispatch(removeIngredient(id));
-    }
-
-    const burgerIngredients = ingredients?.map((ingredient) => (
-        <li key={ingredient.uuid}>
-            <ConstructorElement
-                text={ingredient.name}
-                price={ingredient.price}
-                thumbnail={ingredient.image}
-                handleClose={() => handleRemoveIngredient(ingredient.uuid)}
-            />
-        </li>
-    ));
-
     const [orderModal, setOrderModal] = useState(false);
 
     const fetchOrder = () => {
         if (bun && ingredients) {
             const bunId = bun._id;
             const ingredientsIds = ingredients.map((ingredient) => ingredient._id)
-            setOrder([bunId, ...ingredientsIds, bunId])
-                .then((data) => {
-                    dispatch(orderSuccess(data.name, data.order.number))
-                })
+            dispatch(setOrder([bunId, ...ingredientsIds, bunId]))
             setOrderModal(true);
         }
     };
-
 
     const closeOrderModal = () => {
         setOrderModal(false);
     };
 
+    // BurgerIngredients
+    const burgerIngredients = ingredients?.map((ingredient, index) => (
+        <BurgerItem key={ingredient.uuid} ingredient={ingredient} orderId={index} />
+    ));
 
     return (
         <section className={`${styles.burgerConstructor} pt-25`}

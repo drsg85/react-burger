@@ -44,6 +44,13 @@ export const constructorReducer = (state = initialState, action) => {
             return state
         }
 
+        case 'REORDER_INGREDIENTS': {
+            return {
+                ...state,
+                ingredients: action.payload.ingredients,
+            }
+        }
+
         default:
             return state
     }

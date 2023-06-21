@@ -21,3 +21,10 @@ export const removeIngredient = (id) => ({
         id,
     }
 })
+
+export const reorderIngredients = (ingredients) => ({
+    type: 'REORDER_INGREDIENTS',
+    payload: {
+        ingredients
+    }
+})
