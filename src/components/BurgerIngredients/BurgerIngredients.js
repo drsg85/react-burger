@@ -49,7 +49,7 @@ const BurgerIngredients = () => {
                 containerId="ingredients"
                 onSetActive={() => setActiveTab(tab.type)}
             >
-                <Tab active={activeTab === tab.type} value={tab.title}>{tab.title}</Tab>
+                <Tab active={activeTab === tab.type} value={tab.type}>{tab.title}</Tab>
             </Link>
         </li >
     ))
@@ -58,7 +58,7 @@ const BurgerIngredients = () => {
     const categories = inredientCategories.map((category) => (
         <li key={category.type} id={`category-${category.type}`}>
             <h2>{category.title}</h2>
-            <ul>
+            <ul >
                 {ingredients.filter((ingredient) => ingredient.type === category.type).map((ingredient, index) => (
                     <li key={index}>
                         <Ingredient burgersData={ingredient} onClick={() => setingredientDetailsModal(ingredient)} />
@@ -72,12 +72,12 @@ const BurgerIngredients = () => {
         <>
             <section className={`${styles.burgerIngredients} pt-10`}>
                 <h1 className={`${styles.title} mb-5 text text_type_main-large`}>Соберите бургер</h1>
-                <ul className={styles.ingredientTabs} id='ingredients'>
+                <ul className={styles.ingredientTabs}>
                     {tabs}
                 </ul>
-                <div className={`${styles.content} custom-scroll`}>
+                <ul className={`${styles.content} custom-scroll`} id='ingredients'>
                     {categories}
-                </div>
+                </ul>
             </section>
             {ingredientDetailsModal && (
                 <Modal isOpen={ingredientDetailsModal} onClose={closeModal} title='Детали ингредиента'>
