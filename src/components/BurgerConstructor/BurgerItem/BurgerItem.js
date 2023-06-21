@@ -15,7 +15,6 @@ export const BurgerItem = ({ ingredient, orderId }) => {
         dispatch(removeIngredient(id));
     }
 
-
     // DND
     const itemRef = React.useRef(null)
 
