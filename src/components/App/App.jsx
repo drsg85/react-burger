@@ -3,28 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor';
-import {getIngredients} from '../../utils/getUrl';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import {
-  getIngredientsError,
-  getIngredientsRequest,
-  getIngredientsSuccess,
+  getIngredients,
 } from '../../redux/actions/ingredientsActions';
 import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors';
 
 
 function App() {
   const dispatch = useDispatch();
-  const {isLoading, hasError, ingredients} = useSelector(ingredientsSelector);
+  const { isLoading, hasError, ingredients } = useSelector(ingredientsSelector);
 
   useEffect(() => {
-    dispatch(getIngredientsRequest)
-
-    getIngredients()
-      .then((data) => {
-        dispatch(getIngredientsSuccess(data))
-      })
-      .catch(() => dispatch(getIngredientsError))
+    dispatch(getIngredients())
   }, [dispatch]);
 
   return (
@@ -33,13 +26,15 @@ function App() {
       {isLoading || !ingredients ? (
         <h2>Загрузка...</h2>
       ) : hasError ? (
-        <h2>Ошибка</h2> 
+        <h2>Ошибка</h2>
       ) : (
-        <main>
-          <BurgerIngredients/>
-          <BurgerConstructor/>
-        </main>
-        )}
+        <DndProvider backend={HTML5Backend}>
+          <main>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </main>
+        </DndProvider>
+      )}
     </>
   );
 }

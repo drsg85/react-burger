@@ -1,20 +1,53 @@
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd'
 import { ConstructorElement, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './burgerConstructor.module.css';
-import { useState } from 'react';
+
+// Redux
+import { setBun, setIngredient, removeIngredient } from '../../redux/actions/constructorActions';
+import { ingredientsListSelector, constructorSelector } from '../../redux/selectors';
+import { orderSelector } from '../../redux/selectors/orderSelectors';
+import { orderSuccess } from '../../redux/actions/orderActions';
+
+// Utils
+import { setOrder } from '../../utils/getUrl';
+
+// Components
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import { useSelector, useDispatch } from 'react-redux';
-import { constructorSelector } from '../../redux/selectors/constructorSelectors';
-import { removeIngredient } from '../../redux/actions/constructorActions';
+
+// Styles
+import styles from './burgerConstructor.module.css';
 
 
 const BurgerConstructor = () => {
-    const { ingredients, bun } = useSelector(constructorSelector);
     const dispatch = useDispatch();
+    const ingredientsList = useSelector(ingredientsListSelector);
+    const { bun, ingredients } = useSelector(constructorSelector);
 
     const bunsPrice = bun ? bun.price * 2 : 0;
     const ingredientsPrice = ingredients ? ingredients.reduce((acc, inredient) => acc + inredient.price, 0) : 0;
     const totalPrice = bunsPrice + ingredientsPrice;
+
+    const [{ isHover }, dropRef] = useDrop(() => ({
+        accept: 'INGREDIENT',
+        drop: ({ id }) => {
+            dropIngredient(id)
+        },
+        collect: monitor => ({
+            isHover: monitor.isOver(),
+        }),
+    }))
+
+    const dropIngredient = (id) => {
+        const ingredient = ingredientsList?.find(el => el._id === id)
+
+        if (ingredient) {
+            ingredient.type === 'bun'
+                ? dispatch(setBun(ingredient))
+                : dispatch(setIngredient(ingredient))
+        }
+    }
 
     const handleRemoveIngredient = (id) => {
         dispatch(removeIngredient(id));
@@ -33,10 +66,18 @@ const BurgerConstructor = () => {
 
     const [orderModal, setOrderModal] = useState(false);
 
-
-    const openOrderModal = () => {
-        setOrderModal(true);
+    const fetchOrder = () => {
+        if (bun && ingredients) {
+            const bunId = bun._id;
+            const ingredientsIds = ingredients.map((ingredient) => ingredient._id)
+            setOrder([bunId, ...ingredientsIds, bunId])
+                .then((data) => {
+                    dispatch(orderSuccess(data.name, data.order.number))
+                })
+            setOrderModal(true);
+        }
     };
+
 
     const closeOrderModal = () => {
         setOrderModal(false);
@@ -44,7 +85,8 @@ const BurgerConstructor = () => {
 
 
     return (
-        <section className={`${styles.burgerConstructor} pt-25`}>
+        <section className={`${styles.burgerConstructor} pt-25`}
+            ref={dropRef}>
             <div className={`${styles.content} mb-10`}>
                 <div>
                     {bun ? (
@@ -73,13 +115,20 @@ const BurgerConstructor = () => {
                 </div>
             </div>
             <div className={styles.result}>
-                <p className={`${styles.sum} text text_type_digits-medium pr-10`}>{totalPrice}<span className={`${styles.currencyIcon} ml-2`}><CurrencyIcon type='primary' /></span></p>
-                <Button htmlType='button' type='primary' size='medium' onClick={openOrderModal}>
+
+                <p className={`${styles.sum} text text_type_digits-medium pr-10`}>
+                    {totalPrice}
+                    <span className={`${styles.currencyIcon} ml-2`}>
+                        <CurrencyIcon type='primary' />
+                    </span>
+                </p>
+
+                <Button htmlType='button' type='primary' size='medium' onClick={fetchOrder}>
                     Оформить заказ
                 </Button>
                 {orderModal && (
                     <Modal onClose={closeOrderModal}>
-                        <OrderDetails orderNumber='034536' />
+                        <OrderDetails />
                     </Modal>
                 )}
             </div>
