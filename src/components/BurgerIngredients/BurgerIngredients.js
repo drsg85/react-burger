@@ -58,7 +58,7 @@ const BurgerIngredients = () => {
     const categories = inredientCategories.map((category) => (
         <li key={category.type} id={`category-${category.type}`}>
             <h2>{category.title}</h2>
-            <ul >
+            <ul className={styles.listContainer}>
                 {ingredients.filter((ingredient) => ingredient.type === category.type).map((ingredient, index) => (
                     <li key={index}>
                         <Ingredient burgersData={ingredient} onClick={() => setingredientDetailsModal(ingredient)} />
