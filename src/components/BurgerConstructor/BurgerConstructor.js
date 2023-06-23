@@ -9,8 +9,6 @@ import { ingredientsListSelector, constructorSelector } from '../../redux/select
 import { orderSelector } from '../../redux/selectors/orderSelectors';
 import { orderSuccess, setOrder } from '../../redux/actions/orderActions';
 
-// Utils
-
 // Components
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';

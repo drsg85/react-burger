@@ -1,15 +1,10 @@
-import styles from '../Ingredient/ingredient.module.css';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
-import burgersDataPropTypes from '../../utils/burgersDataPropTypes';
-import { useDispatch } from 'react-redux';
-import { setBun, setIngredient } from '../../redux/actions/constructorActions';
 import { useDrag } from 'react-dnd';
+import styles from '../Ingredient/ingredient.module.css';
 
 
 const Ingredient = ({ burgersData, onClick }) => {
     const { image, price, name, _id } = burgersData;
-    const dispatch = useDispatch();
 
     const openClick = () => {
         onClick(burgersData);
@@ -42,9 +37,5 @@ const Ingredient = ({ burgersData, onClick }) => {
     )
 }
 
-Ingredient.propTypes = {
-    burgersData: PropTypes.shape(burgersDataPropTypes.isRequired),
-    onClick: PropTypes.func.isRequired,
-};
 
 export default Ingredient;

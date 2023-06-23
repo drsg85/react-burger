@@ -1,7 +1,13 @@
-export const setIngredientDetails = {
-    type: 'SET_INGREDIENT_DETILS'
-}
+export const setIngredientDetails = (ingredient) => ({
+    type: 'SET_INGREDIENT_DETAILS',
+    payload: {
+        ingredient,
+    }
+})
 
 export const resetIngredientDetails = {
-    type: 'RESET_INGREDIENT_DETILS'
+    type: 'RESET_INGREDIENT_DETAILS',
+    payload: {
+        ingredient: null,
+    }
 }

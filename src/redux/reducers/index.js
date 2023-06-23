@@ -9,6 +9,6 @@ import { orderReducer } from './orderReducer';
 export const rootReducer = combineReducers({
     ingredients: ingredientReducer,
     burgerConstructor: constructorReducer,
-    IngredientDetails: ingredientDetailsReducer,
+    ingredientDetails: ingredientDetailsReducer,
     orderDetails: orderReducer,
 })

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burgerIngredients.module.css';
 import Ingredient from '../Ingredient/Ingredient';
@@ -7,14 +7,21 @@ import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors';
 import { Link } from 'react-scroll';
+import { setIngredientDetails } from '../../redux/actions/ingredientDetailsAction';
 
 
 const BurgerIngredients = () => {
-    const [ingredientDetailsModal, setingredientDetailsModal] = useState(null);
+    const [isModalActive, setisModalActive] = useState(false);
     const { ingredients } = useSelector(ingredientsSelector);
+    const dispatch = useDispatch();
+
+    const onOpenModal = (ingredient) => {
+        dispatch(setIngredientDetails(ingredient));
+        setisModalActive(true);
+    }
 
     const closeModal = () => {
-        setingredientDetailsModal(null)
+        setisModalActive(false)
     };
 
     // Tab
@@ -61,7 +68,7 @@ const BurgerIngredients = () => {
             <ul className={styles.listContainer}>
                 {ingredients.filter((ingredient) => ingredient.type === category.type).map((ingredient, index) => (
                     <li key={index}>
-                        <Ingredient burgersData={ingredient} onClick={() => setingredientDetailsModal(ingredient)} />
+                        <Ingredient burgersData={ingredient} onClick={() => onOpenModal(ingredient)} />
                     </li>
                 ))}
             </ul>
@@ -79,9 +86,9 @@ const BurgerIngredients = () => {
                     {categories}
                 </ul>
             </section>
-            {ingredientDetailsModal && (
-                <Modal isOpen={ingredientDetailsModal} onClose={closeModal} title='Детали ингредиента'>
-                    <IngredientDetails ingredient={ingredientDetailsModal} />
+            {isModalActive && (
+                <Modal isOpen={isModalActive} onClose={closeModal} title='Детали ингредиента'>
+                    <IngredientDetails />
                 </Modal>
             )}
         </>

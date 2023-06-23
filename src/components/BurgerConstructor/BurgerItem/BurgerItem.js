@@ -1,10 +1,12 @@
 import React from 'react'
 import { useDrop, useDrag } from 'react-dnd'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
+
+// Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { removeIngredient, reorderIngredients } from '../../../redux/actions/constructorActions'
-import { sortFunc } from '../../../utils/sortFunc'
 import { constructorSelector } from '../../../redux/selectors'
+import { sortFunc } from '../../../utils/sortFunc'
 
 export const BurgerItem = ({ ingredient, orderId }) => {
 

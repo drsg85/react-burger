@@ -1,12 +1,12 @@
-import styles from './orderDetails.module.css';
-import checkImage from '../../img/ok.png';
-
+// Redux
 import { orderSelector } from '../../redux/selectors/orderSelectors';
 import { useSelector } from 'react-redux';
 
+import styles from './orderDetails.module.css';
+import checkImage from '../../img/ok.png';
+
 const OrderDetails = () => {
-    const { orderInfo, isLoading, hasError } = useSelector(orderSelector);
-    console.log(orderInfo);
+    const { orderInfo } = useSelector(orderSelector);
 
     return (
         <div className={styles.orderDetails}>
