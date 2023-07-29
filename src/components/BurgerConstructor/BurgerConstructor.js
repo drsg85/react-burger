@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useDrop, useDrag } from 'react-dnd'
+import { useDrop } from 'react-dnd'
 import { ConstructorElement, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 // Redux
-import { setBun, setIngredient, removeIngredient } from '../../redux/actions/constructorActions';
+import { setBun, setIngredient } from '../../redux/actions/constructorActions';
 import { ingredientsListSelector, constructorSelector } from '../../redux/selectors';
-import { orderSelector } from '../../redux/selectors/orderSelectors';
-import { orderSuccess, setOrder } from '../../redux/actions/orderActions';
+import { setOrder } from '../../redux/actions/orderActions';
 
 // Components
 import Modal from '../Modal/Modal';

@@ -1,13 +1,20 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './burgerIngredients.module.css';
+import { Link } from 'react-scroll';
+import { v4 as uuidv4 } from 'uuid';
+
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors';
+import { setIngredientDetails } from '../../redux/actions/ingredientDetailsAction';
+
+// Components
 import Ingredient from '../Ingredient/Ingredient';
 import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
-import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors';
-import { Link } from 'react-scroll';
-import { setIngredientDetails } from '../../redux/actions/ingredientDetailsAction';
+
+// Styles
+import styles from './burgerIngredients.module.css';
 
 
 const BurgerIngredients = () => {
@@ -66,8 +73,8 @@ const BurgerIngredients = () => {
         <li key={category.type} id={`category-${category.type}`}>
             <h2>{category.title}</h2>
             <ul className={styles.listContainer}>
-                {ingredients.filter((ingredient) => ingredient.type === category.type).map((ingredient, index) => (
-                    <li key={index}>
+                {ingredients.filter((ingredient) => ingredient.type === category.type).map((ingredient) => (
+                    <li key={uuidv4()}>
                         <Ingredient burgersData={ingredient} onClick={() => onOpenModal(ingredient)} />
                     </li>
                 ))}
