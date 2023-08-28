@@ -1,0 +1,13 @@
+.authButtonsWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+    margin-right: 8px;
+}
+
+.button {
+    padding: 0;
+}

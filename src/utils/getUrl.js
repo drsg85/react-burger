@@ -1,7 +1,7 @@
 const URL = 'https://norma.nomoreparties.space/api/ingredients';
 const ORDER_URL = 'https://norma.nomoreparties.space/api/orders';
 
-const checkResponse = (res) => {
+export const checkResponse = (res) => {
     return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 

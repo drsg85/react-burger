@@ -19,3 +19,20 @@ main {
   max-width: 1240px;
   margin: 0 auto;
 }
+
+.content {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 18vh;
+}
+
+form {
+  text-align: center;
+}
+
+.input {
+  margin-bottom: 24px;
+}

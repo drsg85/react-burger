@@ -1,0 +1,35 @@
+.container {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    column-gap: 60px;
+}
+
+.asideWrapper {
+    padding-top: 80px;
+}
+
+.asideButtons {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 80px;
+    gap: 30px;
+}
+
+.asideInfo {
+    color: #8585ad;
+}
+
+.profileLink {
+    width: max-content;
+    /* height: 64px; */
+    flex-direction: row;
+    align-items: center;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+
+    color: #8585ad;
+    text-decoration: none;
+    transition: #8585ad 0.4s cubic-bezier(0.4, 0.23, 0, 1);
+}
