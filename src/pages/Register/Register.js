@@ -24,6 +24,7 @@ const Register = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         const headers = { 'Content-Type': 'application/json' }
         const body = JSON.stringify(form);
 

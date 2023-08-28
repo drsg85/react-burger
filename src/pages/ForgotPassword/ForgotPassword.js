@@ -23,9 +23,10 @@ const ForgotPassword = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        const headers = { 'Content-Type': 'application/json' }
         const body = JSON.stringify(form);
 
-        fetch('https://norma.nomoreparties.space/api/password-reset', { method: 'POST', body })
+        fetch('https://norma.nomoreparties.space/api/password-reset', { method: 'POST', headers, body })
             .then(checkResponse)
             .then((res) => navigate('/reset-password'))
             .catch((error) => console.log(error))
