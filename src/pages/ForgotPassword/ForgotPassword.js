@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -8,26 +7,28 @@ import { checkResponse } from '../../utils/getUrl';
 // components
 import AuthButtons from '../../components/AuthButtons/AuthButtons';
 
+// hooks
+import useForm from '../../hooks/useForm';
+
 // styles
 import styles from './forgotPassword.module.css';
 
 const ForgotPassword = () => {
-    const [email, setEmail] = useState('');
     const navigate = useNavigate();
+
+    const [form, handleForm] = useForm({
+        email: '',
+    })
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const body = JSON.stringify({ email });
+        const body = JSON.stringify(form);
 
         fetch('https://norma.nomoreparties.space/api/password-reset', { method: 'POST', body })
-            .then((res) => checkResponse(res))
+            .then(checkResponse)
             .then((res) => navigate('/reset-password'))
             .catch((error) => console.log(error))
-    }
-
-    const handleInput = (event) => {
-        setEmail(event.target.value);
     }
 
     return (
@@ -42,8 +43,8 @@ const ForgotPassword = () => {
                     name="email"
                     placeholder="Укажите e-mail"
                     autoFocus
-                    value={email}
-                    onChange={handleInput}
+                    value={form.email}
+                    onChange={handleForm}
                 />
 
                 <Button htmlType="submit" type="primary" size="large">
