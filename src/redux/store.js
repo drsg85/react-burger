@@ -8,6 +8,6 @@ const composeWithDevTools = window.REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
 
 // Store
 export const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk)),
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk)),
 )
