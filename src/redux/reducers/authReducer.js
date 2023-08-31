@@ -1,5 +1,5 @@
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   hasError: false,
   user: null,
 }
@@ -8,14 +8,12 @@ export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     // register logic
     case 'REGISTER_REQUEST':
-      return {
-        ...initialState,
-        isLoading: true,
-      }
+      return initialState
 
     case 'REGISTER_SUCCESS':
       return {
-        ...initialState,
+        ...state,
+        isLoading: false,
         user: {
           email: action.payload.user.email,
           name: action.payload.user.name,
@@ -24,20 +22,19 @@ export const authReducer = (state = initialState, action) => {
 
     case 'REGISTER_ERROR':
       return {
-        ...initialState,
+        ...state,
+        isLoading: false,
         hasError: true,
       }
 
     // login logic
     case 'LOGIN_REQUEST':
-      return {
-        ...initialState,
-        isLoading: true,
-      }
+      return initialState
 
     case 'LOGIN_SUCCESS':
       return {
-        ...initialState,
+        ...state,
+        isLoading: false,
         user: {
           email: action.payload.user.email,
           name: action.payload.user.name,
@@ -46,7 +43,8 @@ export const authReducer = (state = initialState, action) => {
 
     case 'LOGIN_ERROR':
       return {
-        ...initialState,
+        ...state,
+        isLoading: false,
         hasError: true,
       }
 
@@ -59,7 +57,10 @@ export const authReducer = (state = initialState, action) => {
       }
 
     case 'LOGOUT_SUCCESS':
-      return initialState
+      return {
+        initialState,
+        isLoading: false,
+      }
 
     case 'LOGOUT_ERROR':
       return {
@@ -79,6 +80,7 @@ export const authReducer = (state = initialState, action) => {
     case 'GET_USER_SUCCESS':
       return {
         ...initialState,
+        isLoading: false,
         user: {
           name: action.payload.user.name,
           email: action.payload.user.email,
