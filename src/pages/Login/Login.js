@@ -1,10 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Button,
   EmailInput,
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
-import { useNavigate } from 'react-router-dom'
+// redux
+import { handleLogin } from '../../redux/actions/authActions'
 
 // components
 import AuthButtons from '../../components/AuthButtons/AuthButtons'
@@ -14,10 +16,9 @@ import useForm from '../../hooks/useForm'
 
 // styles
 import styles from './login.module.css'
-import { checkResponse } from '../../utils/getUrl'
 
 const Login = () => {
-  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [form, handleForm] = useForm({
     email: '',
@@ -27,17 +28,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    const headers = { 'Content-Type': 'application/json' }
-    const body = JSON.stringify(form)
-
-    fetch('https://norma.nomoreparties.space/api/auth/login', {
-      method: 'POST',
-      headers,
-      body,
-    })
-      .then(checkResponse)
-      .then((res) => navigate('/'))
-      .catch((error) => console.log(error))
+    dispatch(handleLogin(form))
   }
 
   return (

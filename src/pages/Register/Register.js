@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Button,
   Input,
@@ -6,8 +6,8 @@ import {
   PasswordInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
-// utils
-import { checkResponse } from '../../utils/getUrl'
+// redux
+import { handleRegister } from '../../redux/actions/authActions'
 
 // hooks
 import useForm from '../../hooks/useForm'
@@ -19,7 +19,7 @@ import AuthButtons from '../../components/AuthButtons/AuthButtons'
 import styles from './register.module.css'
 
 const Register = () => {
-  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [form, handleForm] = useForm({
     name: '',
@@ -30,17 +30,7 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    const headers = { 'Content-Type': 'application/json' }
-    const body = JSON.stringify(form)
-
-    fetch('https://norma.nomoreparties.space/api/auth/register', {
-      method: 'POST',
-      headers,
-      body,
-    })
-      .then(checkResponse)
-      .then((res) => navigate('/'))
-      .catch((error) => console.log(error))
+    dispatch(handleRegister(form))
   }
 
   return (

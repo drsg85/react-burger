@@ -1,10 +1,19 @@
+import { useDispatch } from 'react-redux'
 import { NavLink, Outlet } from 'react-router-dom'
 
+// redux
+import { handleLogout } from '../../redux/actions/authActions'
+
+// styles
 import styles from './profile.module.css'
 
-// переделать кнопку выход
-
 const Profile = () => {
+  const dispatch = useDispatch()
+
+  const onCliclLogout = () => {
+    dispatch(handleLogout())
+  }
+
   return (
     <main className={styles.container}>
       <aside className={styles.asideWrapper}>
@@ -33,15 +42,12 @@ const Profile = () => {
             История заказов
           </NavLink>
 
-          <NavLink
-            className={({ isActive }) => {
-              return `${styles.profileLink} text text_type_main-default ${
-                isActive ? styles.active : 'text_color_inactive'
-              }`
-            }}
+          <button
+            onClick={onCliclLogout}
+            className={`${styles.profileLink} text text_type_main-default text_color_inactive`}
           >
             Выход
-          </NavLink>
+          </button>
         </div>
         <p className={styles.asideInfo}>
           В этом разделе вы можете изменить свои персональные данные
