@@ -9,10 +9,11 @@ const ProtectedRoute = ({ element, onlyUnAuth = false }) => {
 
   if (isLoading) return <h1>Идет загрузка...</h1>
 
-  if (onlyUnAuth && user) return <Navigate to={location.state?.target || '/'} />
+  if (onlyUnAuth && user)
+    return <Navigate to={location.state?.target || '/'} replace />
 
   if (!onlyUnAuth && !user)
-    return <Navigate to="/login" state={{ target: location }} />
+    return <Navigate to="/login" state={{ target: location }} replace />
 
   return element
 }
