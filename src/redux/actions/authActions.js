@@ -89,9 +89,12 @@ export const handleLogout = () => (dispatch) => {
 
 // getuser action
 export const handleGetUser = () => (dispatch) => {
-  dispatch(getUserRequest())
+  const rawAccessToken = getCookie('accessToken')
+  const accessToken = rawAccessToken && 'Bearer '.concat(rawAccessToken)
 
-  const accessToken = 'Bearer '.concat(getCookie('accessToken') || '')
+  if (!accessToken) return
+
+  dispatch(getUserRequest())
 
   const headers = {
     'Content-Type': 'application/json',

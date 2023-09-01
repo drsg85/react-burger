@@ -1,5 +1,5 @@
 const initialState = {
-  isLoading: true,
+  isLoading: false,
   hasError: false,
   user: null,
 }
@@ -8,7 +8,7 @@ export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     // register logic
     case 'REGISTER_REQUEST':
-      return initialState
+      return { initialState, isLoading: true }
 
     case 'REGISTER_SUCCESS':
       return {
@@ -29,7 +29,7 @@ export const authReducer = (state = initialState, action) => {
 
     // login logic
     case 'LOGIN_REQUEST':
-      return initialState
+      return { initialState, isLoading: true }
 
     case 'LOGIN_SUCCESS':
       return {
