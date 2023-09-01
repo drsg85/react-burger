@@ -1,4 +1,3 @@
-import React from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -32,5 +31,5 @@ export const AppHeaderLink = ({ title, to, Icon }) => {
 AppHeaderLink.propTypes = {
   title: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
-  Icon: React.Element,
+  Icon: PropTypes.any,
 }

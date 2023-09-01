@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 // Redux
@@ -17,16 +17,15 @@ import ResetPassword from '../../pages/ResetPassword/ResetPassword'
 // Components
 import AppHeader from '../AppHeader/AppHeader'
 import ProfileInfo from '../ProfileInfo/ProfileInfo'
-
-import { compose, createStore } from 'redux'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose
+import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal'
+import IngredientDetailsWrapper from '../IngredientDetailsWrapper/IngredientDetailsWrapper'
+import IngredientPage from '../../pages/IngredientPage/IngredientPage'
 
 const App = () => {
   const dispatch = useDispatch()
+  const location = useLocation()
+  const background = location.state && location.state.background
 
   useEffect(() => {
     dispatch(handleGetUser())
@@ -36,7 +35,7 @@ const App = () => {
   return (
     <>
       <AppHeader />
-      <Routes>
+      <Routes location={background || location}>
         <Route path="/" element={<MainPage />} />
 
         <Route path="/feed" element={<h1>лента заказов</h1>} />
@@ -68,7 +67,15 @@ const App = () => {
           path="/reset-password"
           element={<ProtectedRoute onlyUnAuth element={<ResetPassword />} />}
         />
+
+        <Route path="/ingredients/:id" element={<IngredientPage />} />
       </Routes>
+
+      {background && (
+        <Routes>
+          <Route path="/ingredients/:id" element={<IngredientDetailsModal />} />
+        </Routes>
+      )}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import {
   Logo,
@@ -10,16 +10,23 @@ import {
 import styles from './appheader.module.css'
 import { AppHeaderLink } from './AppHeaderLink/AppHeaderLink'
 
-// сделать сетку
-// сделать активными иконки
-
 const AppHeader = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <nav className={styles.headerNav}>
         <div className={styles.headerNavList}>
-          <AppHeaderLink title="Конструктор" to="/" Icon={BurgerIcon} />
-          <AppHeaderLink title="Лента заказов" to="/feed" Icon={ListIcon} />
+          <AppHeaderLink
+            className={styles.headerLink}
+            title="Конструктор"
+            to="/"
+            Icon={BurgerIcon}
+          />
+          <AppHeaderLink
+            className={styles.headerLink}
+            title="Лента заказов"
+            to="/feed"
+            Icon={ListIcon}
+          />
         </div>
 
         <Link to="/">
@@ -27,6 +34,7 @@ const AppHeader = () => {
         </Link>
 
         <AppHeaderLink
+          className={styles.headerLink}
           title="Личный кабинет"
           to="/profile"
           Icon={ProfileIcon}

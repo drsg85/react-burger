@@ -29,7 +29,10 @@
   font-weight: 700;
   line-height: 1.25;
 
+  background: none;
+  border: none;
   color: #8585ad;
+  cursor: pointer;
   text-decoration: none;
   transition: #8585ad 0.4s cubic-bezier(0.4, 0.23, 0, 1);
 }

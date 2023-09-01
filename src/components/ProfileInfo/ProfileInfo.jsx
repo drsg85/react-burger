@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux'
 import {
   EmailInput,
   Input,
@@ -6,14 +7,13 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux'
+import { handleSetUser } from '../../redux/actions/authActions'
 
 // Hooks
 import useForm from '../../hooks/useForm'
 
 // styles
 import styles from './profileInfo.module.css'
-import { handleSetUser } from '../../redux/actions/authActions'
 
 const ProfileInfo = () => {
   const dispatch = useDispatch()

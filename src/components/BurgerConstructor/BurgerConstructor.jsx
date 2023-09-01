@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import {
@@ -19,12 +20,16 @@ import { setOrder } from '../../redux/actions/orderActions'
 import Modal from '../Modal/Modal'
 import OrderDetails from '../OrderDetails/OrderDetails'
 
+// Nested components
+import BurgerItem from './BurgerItem/BurgerItem'
+
 // Styles
 import styles from './burgerConstructor.module.css'
-import { BurgerItem } from './BurgerItem/BurgerItem'
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = useSelector((store) => store.auth.user)
   const ingredientsList = useSelector(ingredientsListSelector)
   const { bun, ingredients } = useSelector(constructorSelector)
 
@@ -57,6 +62,10 @@ const BurgerConstructor = () => {
   const [orderModal, setOrderModal] = useState(false)
 
   const fetchOrder = () => {
+    if (!user) {
+      navigate('/login')
+      return
+    }
     if (bun && ingredients) {
       const bunId = bun._id
       const ingredientsIds = ingredients.map((ingredient) => ingredient._id)
