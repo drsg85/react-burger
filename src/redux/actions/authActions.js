@@ -1,6 +1,7 @@
 import { deleteCookie, getCookie, setCookie } from '../../utils/cookie'
+import { fetchWithRefresh } from '../../utils/fetchWithRefresh'
 import { checkResponse } from '../../utils/getUrl'
-import { saveToken } from '../../utils/saveTokens'
+import { saveTokens } from '../../utils/saveTokens'
 import {
   registerRequest,
   registerSuccess,
@@ -33,7 +34,7 @@ export const handleRegister = (form) => (dispatch) => {
   })
     .then(checkResponse)
     .then((res) => {
-      saveToken(res.accessToken, res.refreshToken)
+      saveTokens(res.accessToken, res.refreshToken)
 
       dispatch(registerSuccess(res.user))
     })
@@ -54,7 +55,7 @@ export const handleLogin = (form) => (dispatch) => {
   })
     .then(checkResponse)
     .then((res) => {
-      saveToken(res.accessToken, res.refreshToken)
+      saveTokens(res.accessToken, res.refreshToken)
 
       dispatch(loginSuccess(res.user))
     })
@@ -101,15 +102,23 @@ export const handleGetUser = () => (dispatch) => {
     Authorization: accessToken,
   }
 
-  fetch('https://norma.nomoreparties.space/api/auth/user', {
+  fetchWithRefresh('https://norma.nomoreparties.space/api/auth/user', {
     method: 'GET',
     headers,
   })
-    .then(checkResponse)
+    // fetch('https://norma.nomoreparties.space/api/auth/user', {
+    //   method: 'GET',
+    //   headers,
+    // })
+    // .then(checkResponse)
     .then((res) => {
       dispatch(getUserSuccess(res.user))
     })
-    .catch(() => dispatch(getUserError()))
+    .catch(() => {
+      console.log('Error in redux')
+
+      dispatch(getUserError())
+    })
 }
 
 // setuser action
@@ -124,12 +133,17 @@ export const handleSetUser = (form) => (dispatch) => {
   }
   const body = JSON.stringify(form)
 
-  fetch('https://norma.nomoreparties.space/api/auth/user', {
+  fetchWithRefresh('https://norma.nomoreparties.space/api/auth/user', {
     method: 'PATCH',
     headers,
     body,
   })
-    .then(checkResponse)
+    // fetch('https://norma.nomoreparties.space/api/auth/user', {
+    //   method: 'PATCH',
+    //   headers,
+    //   body,
+    // })
+    // .then(checkResponse)
     .then((res) => {
       dispatch(setUserSuccess(res.user))
     })

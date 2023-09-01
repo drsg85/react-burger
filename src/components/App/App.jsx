@@ -19,7 +19,6 @@ import AppHeader from '../AppHeader/AppHeader'
 import ProfileInfo from '../ProfileInfo/ProfileInfo'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal'
-import IngredientDetailsWrapper from '../IngredientDetailsWrapper/IngredientDetailsWrapper'
 import IngredientPage from '../../pages/IngredientPage/IngredientPage'
 
 const App = () => {
