@@ -1,13 +1,22 @@
+import React from 'react'
 import { useDrag } from 'react-dnd'
 import {
   CurrencyIcon,
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types'
 
+// Types and utils
+import { IIngredient } from 'types'
+
+// Styles
 import styles from '../Ingredient/ingredient.module.css'
 
-const Ingredient = ({ burgersData, onClick }) => {
+export interface IIngredientProps {
+  burgersData: IIngredient
+  onClick: (burgersData: IIngredient) => void
+}
+
+const Ingredient: React.FC<IIngredientProps> = ({ burgersData, onClick }) => {
   const { image, price, name, _id } = burgersData
 
   const openClick = () => {
@@ -44,7 +53,7 @@ const Ingredient = ({ burgersData, onClick }) => {
         </p>
         <p className={`${styles.name} text text_type_main-default`}>{name}</p>
         <span className={styles.counter}>
-          <Counter count={1} size="default" extraclass="m-1" />
+          <Counter count={1} size="default" extraClass="m-1" />
         </span>
       </div>
     </>
@@ -52,8 +61,3 @@ const Ingredient = ({ burgersData, onClick }) => {
 }
 
 export default Ingredient
-
-Ingredient.propTypes = {
-  burgersData: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
-}
