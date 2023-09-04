@@ -9,8 +9,8 @@ import {
 // Reducer
 import { rootReducer } from './reducers'
 
-//TODO Create TAppActions
-type TAppActions = any
+// Actions
+import { TAppActions } from './actions'
 
 // Redux DevTools
 declare global {
