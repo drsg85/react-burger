@@ -4,10 +4,15 @@ import thunk from 'redux-thunk'
 // Reducer
 import { rootReducer } from './reducers'
 
+// Redux DevTools
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose
+  }
+}
+
 const composeWithDevTools =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 // Store
 export const store = createStore(
