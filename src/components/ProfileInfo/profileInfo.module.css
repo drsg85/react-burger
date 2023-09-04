@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  gap: 24px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
