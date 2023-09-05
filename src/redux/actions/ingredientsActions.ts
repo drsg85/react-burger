@@ -2,8 +2,9 @@
 import { AppThunk } from 'redux/store'
 
 // Types and utils
-import { IIngredient } from 'types'
-import { fetchIngredients } from 'utils/getUrl'
+import { IIngredient, IIngredientsRespose } from 'types'
+import { INGREDIENTS_URL } from 'utils/constants'
+import { checkResponse } from 'utils/getUrl'
 
 // Typing
 export interface IGetIngredientsRequestA {
@@ -47,9 +48,10 @@ export const getIngredientsError: IGetIngredientsErrorA = {
 export const getIngredients = (): AppThunk => (dispatch) => {
   dispatch(getIngredientsRequest)
 
-  fetchIngredients()
-    .then((data) => {
-      dispatch(getIngredientsSuccess(data))
+  fetch(INGREDIENTS_URL)
+    .then(checkResponse<IIngredientsRespose>)
+    .then((res) => {
+      dispatch(getIngredientsSuccess(res.data))
     })
     .catch(() => dispatch(getIngredientsError))
 }
