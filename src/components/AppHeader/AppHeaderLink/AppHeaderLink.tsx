@@ -1,10 +1,17 @@
+import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { TIconProps } from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/utils'
 
-// styles
+// Styles
 import styles from './appHeaderLink.module.css'
 
-export const AppHeaderLink = ({ title, to, Icon }) => {
+export interface IAppHeaderLinkProps {
+  to: string
+  title: string
+  Icon: FC<TIconProps>
+}
+
+export const AppHeaderLink: FC<IAppHeaderLinkProps> = ({ title, to, Icon }) => {
   return (
     <NavLink
       className={({ isActive }) => {
@@ -26,10 +33,4 @@ export const AppHeaderLink = ({ title, to, Icon }) => {
       }}
     </NavLink>
   )
-}
-
-AppHeaderLink.propTypes = {
-  title: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-  Icon: PropTypes.any,
 }

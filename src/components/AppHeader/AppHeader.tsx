@@ -1,5 +1,5 @@
+import { FC } from 'react'
 import { Link } from 'react-router-dom'
-
 import {
   Logo,
   BurgerIcon,
@@ -7,26 +7,19 @@ import {
   ProfileIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
-import styles from './appheader.module.css'
+// Components
 import { AppHeaderLink } from './AppHeaderLink/AppHeaderLink'
 
-const AppHeader = () => {
+// Styles
+import styles from './appheader.module.css'
+
+const AppHeader: FC = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.headerNav}>
         <div className={styles.headerNavList}>
-          <AppHeaderLink
-            className={styles.headerLink}
-            title="Конструктор"
-            to="/"
-            Icon={BurgerIcon}
-          />
-          <AppHeaderLink
-            className={styles.headerLink}
-            title="Лента заказов"
-            to="/feed"
-            Icon={ListIcon}
-          />
+          <AppHeaderLink to="/" title="Конструктор" Icon={BurgerIcon} />
+          <AppHeaderLink to="/feed" title="Лента заказов" Icon={ListIcon} />
         </div>
 
         <Link to="/">
@@ -34,9 +27,8 @@ const AppHeader = () => {
         </Link>
 
         <AppHeaderLink
-          className={styles.headerLink}
-          title="Личный кабинет"
           to="/profile"
+          title="Личный кабинет"
           Icon={ProfileIcon}
         />
       </nav>
