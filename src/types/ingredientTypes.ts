@@ -8,3 +8,7 @@ export interface IIngredient {
   carbohydrates: number
   calories: number
 }
+
+export interface IConstructorIngredient extends IIngredient {
+  uuid: string
+}
