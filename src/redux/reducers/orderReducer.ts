@@ -1,10 +1,24 @@
-const initialState = {
+import { OrderActions } from 'redux/actions/orderActions'
+
+interface IOrderState {
+  isLoading: boolean
+  hasError: boolean
+  orderInfo: {
+    burgersName: string
+    orderNumber: string
+  } | null
+}
+
+const initialState: IOrderState = {
   isLoading: false,
   hasError: false,
   orderInfo: null,
 }
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (
+  state = initialState,
+  action: OrderActions,
+): IOrderState => {
   switch (action.type) {
     case 'ORDER_REQUEST':
       return {
