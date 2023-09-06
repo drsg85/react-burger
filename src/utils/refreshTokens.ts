@@ -1,3 +1,5 @@
+import { IRefreshTokensResponse } from 'types'
+import { checkResponse } from './getUrl'
 import { saveTokens } from './saveTokens'
 
 export const refreshTokens = async () => {
@@ -18,6 +20,8 @@ export const refreshTokens = async () => {
           body,
         },
       )
+        .then(checkResponse<IRefreshTokensResponse>)
+        .catch((error) => Promise.reject(error))
 
       saveTokens(fetchResponse.accessToken, fetchResponse.refreshToken)
 

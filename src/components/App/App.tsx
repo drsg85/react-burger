@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 
 // Redux
-import { handleGetUser } from '../../redux/actions/authActions'
-import { getIngredients } from '../../redux/actions/ingredientsActions'
+import { useDispatch } from 'redux/store'
+import { getIngredients, handleGetUser } from 'redux/actions'
 
 // Pages
 import MainPage from '../../pages/MainPage/MainPage'

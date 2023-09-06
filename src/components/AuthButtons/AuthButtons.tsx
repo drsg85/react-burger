@@ -1,11 +1,17 @@
+import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types'
 
 // Styles
 import styles from './authbuttons.module.css'
 
-const AuthButtons = ({ title, buttonName, path }) => {
+export interface IAuthButtonsProps {
+  title: string
+  buttonName: string
+  path: string
+}
+
+const AuthButtons: FC<IAuthButtonsProps> = ({ title, buttonName, path }) => {
   const navigate = useNavigate()
   return (
     <div className={styles.authButtonsWrapper}>
@@ -22,12 +28,6 @@ const AuthButtons = ({ title, buttonName, path }) => {
       </Button>
     </div>
   )
-}
-
-AuthButtons.propTypes = {
-  title: PropTypes.string.isRequired,
-  buttonName: PropTypes.string.isRequired,
-  path: PropTypes.string.isRequired,
 }
 
 export default AuthButtons

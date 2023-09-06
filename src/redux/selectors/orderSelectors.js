@@ -1,1 +1,0 @@
-export const orderSelector = store => store.orderDetails;

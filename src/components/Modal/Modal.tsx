@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, PropsWithChildren } from 'react'
 import ReactDOM from 'react-dom'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
@@ -10,9 +10,16 @@ import ModalOverlay from './ModalOverlay/ModalOverlay'
 // Styles
 import styles from './modal.module.css'
 
-const modalRoot = document.getElementById('react-modals')
+const modalRoot = document.getElementById('react-modals') as HTMLElement
 
-const Modal = ({ title, children }) => {
+export interface IModalProps {
+  title?: string
+}
+
+const Modal: React.FC<PropsWithChildren<IModalProps>> = ({
+  title,
+  children,
+}) => {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -21,7 +28,7 @@ const Modal = ({ title, children }) => {
   }, [location.state?.background, navigate])
 
   useEffect(() => {
-    const esc = (e) => {
+    const esc = (e: KeyboardEvent) => {
       e.key === 'Escape' && onClose()
     }
 

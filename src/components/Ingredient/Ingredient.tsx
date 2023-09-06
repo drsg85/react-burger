@@ -32,31 +32,29 @@ const Ingredient: React.FC<IIngredientProps> = ({ burgersData, onClick }) => {
   }))
 
   return (
-    <>
-      <div
-        className={`${styles.ingredient} mb-8`}
-        onClick={openClick}
-        ref={dragRef}
-        // isDragging
-      >
-        <img
-          className={`${styles.image} mb-2`}
-          src={`${image}`}
-          alt={name}
-          ref={dragPreviewRef}
-        />
-        <p className={`${styles.price} mb-2 text text_type_digits-default`}>
-          {price}
-          <span className={`${styles.currancy}`}>
-            <CurrencyIcon type="primary" />
-          </span>
-        </p>
-        <p className={`${styles.name} text text_type_main-default`}>{name}</p>
-        <span className={styles.counter}>
-          <Counter count={1} size="default" extraClass="m-1" />
+    <li
+      className={`${styles.ingredient} mb-8`}
+      onClick={openClick}
+      ref={dragRef}
+      // isDragging
+    >
+      <img
+        className={`${styles.image} mb-2`}
+        src={`${image}`}
+        alt={name}
+        ref={dragPreviewRef}
+      />
+      <p className={`${styles.price} mb-2 text text_type_digits-default`}>
+        {price}
+        <span className={`${styles.currancy}`}>
+          <CurrencyIcon type="primary" />
         </span>
-      </div>
-    </>
+      </p>
+      <p className={`${styles.name} text text_type_main-default`}>{name}</p>
+      <span className={styles.counter}>
+        <Counter count={1} size="default" extraClass="m-1" />
+      </span>
+    </li>
   )
 }
 

@@ -1,11 +1,19 @@
+// Types
+import { IErrorResponse } from 'types'
+
 import { checkResponse } from './getUrl'
 import { refreshTokens } from './refreshTokens'
 
-export const fetchWithRefresh = async (url, options) => {
+export const fetchWithRefresh = async <T>(
+  url: string,
+  options: RequestInit,
+) => {
   try {
     const res = await fetch(url, options)
-    return await checkResponse(res)
-  } catch (error) {
+    return await checkResponse<T>(res)
+  } catch (err) {
+    const error = err as IErrorResponse
+
     if (error.message === 'jwt expired') {
       const freshData = await refreshTokens()
 
@@ -20,7 +28,7 @@ export const fetchWithRefresh = async (url, options) => {
           },
         }
 
-        return await fetch(url, freshOptions)
+        return fetch(url, freshOptions).then(checkResponse<T>)
       }
     }
 

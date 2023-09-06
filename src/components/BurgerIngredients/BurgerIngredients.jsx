@@ -78,12 +78,11 @@ const BurgerIngredients = () => {
         {ingredients
           .filter((ingredient) => ingredient.type === category.type)
           .map((ingredient) => (
-            <li key={uuidv4()}>
-              <Ingredient
-                burgersData={ingredient}
-                onClick={() => onClickIngredient(ingredient)}
-              />
-            </li>
+            <Ingredient
+              key={uuidv4()}
+              burgersData={ingredient}
+              onClick={() => onClickIngredient(ingredient)}
+            />
           ))}
       </ul>
     </li>

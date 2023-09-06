@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import {
   ConstructorElement,
@@ -9,6 +8,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
 // Redux
+import { useDispatch, useSelector } from 'redux/store'
 import { setBun, setIngredient } from '../../redux/actions/constructorActions'
 import {
   ingredientsListSelector,
@@ -25,11 +25,12 @@ import BurgerItem from './BurgerItem/BurgerItem'
 
 // Styles
 import styles from './burgerConstructor.module.css'
+import { authSelector } from 'redux/selectors/authSelectors'
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const user = useSelector((store) => store.auth.user)
+  const { user } = useSelector(authSelector)
   const ingredientsList = useSelector(ingredientsListSelector)
   const { bun, ingredients } = useSelector(constructorSelector)
 
@@ -41,7 +42,7 @@ const BurgerConstructor = () => {
 
   const [{ isHover }, dropRef] = useDrop(() => ({
     accept: 'INGREDIENT',
-    drop: ({ id }) => {
+    drop: ({ id }: { id: string }) => {
       dropIngredient(id)
     },
     collect: (monitor) => ({
@@ -49,7 +50,7 @@ const BurgerConstructor = () => {
     }),
   }))
 
-  const dropIngredient = (id) => {
+  const dropIngredient = (id: string) => {
     const ingredient = ingredientsList?.find((el) => el._id === id)
 
     if (ingredient) {
@@ -133,7 +134,7 @@ const BurgerConstructor = () => {
           Оформить заказ
         </Button>
         {orderModal && (
-          <Modal onClose={closeOrderModal}>
+          <Modal>
             <OrderDetails />
           </Modal>
         )}

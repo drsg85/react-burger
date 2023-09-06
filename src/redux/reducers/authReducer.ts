@@ -1,14 +1,28 @@
-const initialState = {
+import { AuthActions } from 'redux/actionCreators/authActionCreators'
+
+interface IAuthState {
+  isLoading: boolean
+  hasError: boolean
+  user: {
+    email: string
+    name: string
+  } | null
+}
+
+const initialState: IAuthState = {
   isLoading: false,
   hasError: false,
   user: null,
 }
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (
+  state = initialState,
+  action: AuthActions,
+): IAuthState => {
   switch (action.type) {
     // register logic
     case 'REGISTER_REQUEST':
-      return { initialState, isLoading: true }
+      return { ...initialState, isLoading: true }
 
     case 'REGISTER_SUCCESS':
       return {
@@ -29,7 +43,7 @@ export const authReducer = (state = initialState, action) => {
 
     // login logic
     case 'LOGIN_REQUEST':
-      return { initialState, isLoading: true }
+      return { ...initialState, isLoading: true }
 
     case 'LOGIN_SUCCESS':
       return {
@@ -58,7 +72,7 @@ export const authReducer = (state = initialState, action) => {
 
     case 'LOGOUT_SUCCESS':
       return {
-        initialState,
+        ...initialState,
         isLoading: false,
       }
 

@@ -5,7 +5,7 @@ interface IOrderState {
   hasError: boolean
   orderInfo: {
     burgersName: string
-    orderNumber: string
+    orderNumber: number
   } | null
 }
 

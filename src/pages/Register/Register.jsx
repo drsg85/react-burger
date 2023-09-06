@@ -21,6 +21,7 @@ import styles from './register.module.css'
 const Register = () => {
   const dispatch = useDispatch()
 
+  //! Типизировать из файла types/requests
   const [form, handleForm] = useForm({
     name: '',
     email: '',

@@ -4,6 +4,7 @@ import { AppThunk } from 'redux/store'
 // Types and utils
 
 import { fetchOrder } from '../../utils/getUrl'
+import { IFetchOrderResponse } from 'types'
 
 // Typing
 export interface IOrderRequestA {
@@ -15,7 +16,7 @@ export interface IOrderSuccessA {
   payload: {
     orderInfo: {
       burgersName: string
-      orderNumber: string
+      orderNumber: number
     }
   }
 }
@@ -33,7 +34,7 @@ export const orderRequest: IOrderRequestA = {
 
 export const orderSuccess = (
   burgersName: string,
-  orderNumber: string,
+  orderNumber: number,
 ): IOrderSuccessA => ({
   type: 'ORDER_SUCCESS',
   payload: {
@@ -53,9 +54,9 @@ export const setOrder =
   (dispatch) => {
     dispatch(orderRequest)
 
-    fetchOrder(ingredients)
-      .then((data) => {
-        dispatch(orderSuccess(data.name, data.order.number))
+    fetchOrder<IFetchOrderResponse>(ingredients)
+      .then((res) => {
+        dispatch(orderSuccess(res.name, res.order.number))
       })
       .catch(() => dispatch(orderError))
   }

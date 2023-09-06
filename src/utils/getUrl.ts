@@ -12,10 +12,10 @@ export const checkResponse = <T>(res: Response): Promise<T> => {
     : res.json().then((err) => Promise.reject(err))
 }
 
-export const fetchOrder = (ingredients: string[]) => {
+export const fetchOrder = <T>(ingredients: string[]) => {
   const accessToken = 'Bearer '.concat(getCookie('accessToken') || '')
 
-  return fetchWithRefresh(ORDER_URL, {
+  return fetchWithRefresh<T>(ORDER_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,9 +23,4 @@ export const fetchOrder = (ingredients: string[]) => {
     },
     body: JSON.stringify({ ingredients }),
   })
-    .then((data) => {
-      if (data?.success) return data
-      return Promise.reject(data)
-    })
-    .catch((error) => console.log('Error: ', error))
 }
