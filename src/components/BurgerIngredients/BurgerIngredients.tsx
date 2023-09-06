@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-scroll'
 import { v4 as uuidv4 } from 'uuid'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 
+// Types
+import { IIngredient } from 'types'
+
 // Redux
-import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors'
-import { setIngredientDetails } from '../../redux/actions/ingredientDetailsAction'
+import { useDispatch, useSelector } from 'redux/store'
+import { setIngredientDetails } from 'redux/actions'
+import { ingredientsSelector } from 'redux/selectors'
 
 // Components
 import Ingredient from '../Ingredient/Ingredient'
@@ -15,7 +18,7 @@ import Ingredient from '../Ingredient/Ingredient'
 // Styles
 import styles from './burgerIngredients.module.css'
 
-const BurgerIngredients = () => {
+const BurgerIngredients: React.FC = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
@@ -43,7 +46,7 @@ const BurgerIngredients = () => {
   const [activeTab, setActiveTab] = useState(inredientCategories[0].type)
 
   //   Modal logic
-  function onClickIngredient(ingredient) {
+  function onClickIngredient(ingredient: IIngredient) {
     dispatch(setIngredientDetails(ingredient))
 
     navigate(`/ingredients/${ingredient._id}`, {
@@ -63,6 +66,11 @@ const BurgerIngredients = () => {
         containerId="ingredients"
         onSetActive={() => setActiveTab(tab.type)}
       >
+        {/* Компонент <Tab> требует передачи функции в onClick.
+						Клик у меня обрабатывается в обертке <Link>,
+						поэтому необходимости в обработке клика по <Tab> не требуется.
+						eslint-disable-next-line
+						@ts-ignore */}
         <Tab active={activeTab === tab.type} value={tab.type}>
           {tab.title}
         </Tab>
@@ -76,7 +84,7 @@ const BurgerIngredients = () => {
       <h2>{category.title}</h2>
       <ul className={styles.listContainer}>
         {ingredients
-          .filter((ingredient) => ingredient.type === category.type)
+          ?.filter((ingredient) => ingredient.type === category.type)
           .map((ingredient) => (
             <Ingredient
               key={uuidv4()}
