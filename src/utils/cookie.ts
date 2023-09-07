@@ -1,6 +1,16 @@
 /* eslint-disable */
 
-export function setCookie(name, value, options) {
+interface ISetCookieProps {
+  path?: string
+  expires?: Date | string | number
+  [propName: string]: any
+}
+
+export function setCookie(
+  name: string,
+  value: string,
+  options?: ISetCookieProps,
+) {
   options = { path: '/', ...options }
 
   let exp = options.expires
@@ -30,7 +40,7 @@ export function setCookie(name, value, options) {
   document.cookie = updatedCookie
 }
 
-export function getCookie(name) {
+export function getCookie(name: string) {
   const matches = document.cookie.match(
     new RegExp(
       '(?:^|; )' +
@@ -41,7 +51,7 @@ export function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined
 }
 
-export function deleteCookie(name) {
+export function deleteCookie(name: string) {
   setCookie(name, '', {
     'max-age': -1,
   })

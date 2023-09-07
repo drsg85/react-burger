@@ -1,8 +1,16 @@
-import { useSelector } from 'react-redux'
+import React, { ReactElement } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { useSelector } from 'redux/store'
 
-const ProtectedRoute = ({ element, onlyUnAuth = false }) => {
+export interface IProtectedRoute {
+  element: ReactElement
+  onlyUnAuth?: boolean
+}
+
+const ProtectedRoute: React.FC<IProtectedRoute> = ({
+  element,
+  onlyUnAuth = false,
+}) => {
   const location = useLocation()
 
   const { user, isLoading } = useSelector((store) => store.auth)
@@ -19,8 +27,3 @@ const ProtectedRoute = ({ element, onlyUnAuth = false }) => {
 }
 
 export default ProtectedRoute
-
-ProtectedRoute.propTypes = {
-  element: PropTypes.element.isRequired,
-  onlyUnAuth: PropTypes.bool,
-}

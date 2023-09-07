@@ -1,9 +1,18 @@
-import PropTypes from 'prop-types'
+import React from 'react'
+
+// Types
+import { IIngredient } from 'types'
 
 // Styles
 import styles from './ingredientDetails.module.css'
 
-const IngredientDetails = ({ ingredient }) => {
+export interface IIngredientDetailsProps {
+  ingredient: IIngredient
+}
+
+const IngredientDetails: React.FC<IIngredientDetailsProps> = ({
+  ingredient,
+}) => {
   return (
     <div className={styles.ingredientDetails}>
       <img
@@ -46,7 +55,3 @@ const IngredientDetails = ({ ingredient }) => {
 }
 
 export default IngredientDetails
-
-IngredientDetails.propTypes = {
-  ingredient: PropTypes.object.isRequired,
-}

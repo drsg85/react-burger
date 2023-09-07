@@ -1,4 +1,3 @@
-import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Logo,
@@ -13,7 +12,7 @@ import { AppHeaderLink } from './AppHeaderLink/AppHeaderLink'
 // Styles
 import styles from './appheader.module.css'
 
-const AppHeader: FC = () => {
+const AppHeader: React.FC = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.headerNav}>

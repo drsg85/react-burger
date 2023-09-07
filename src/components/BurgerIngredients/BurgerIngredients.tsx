@@ -66,9 +66,7 @@ const BurgerIngredients: React.FC = () => {
         containerId="ingredients"
         onSetActive={() => setActiveTab(tab.type)}
       >
-        {/* Компонент <Tab> требует передачи функции в onClick.
-						Клик у меня обрабатывается в обертке <Link>,
-						поэтому необходимости в обработке клика по <Tab> не требуется.
+        {/*Обработка клика по Tab не нужна, поскольку он обрабатывается в Link
 						eslint-disable-next-line
 						@ts-ignore */}
         <Tab active={activeTab === tab.type} value={tab.type}>

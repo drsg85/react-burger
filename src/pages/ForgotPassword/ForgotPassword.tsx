@@ -1,13 +1,8 @@
-import { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   Button,
-  Input,
-  PasswordInput,
+  EmailInput,
 } from '@ya.praktikum/react-developer-burger-ui-components'
-
-// hooks
-import useForm from '../../hooks/useForm'
 
 // utils
 import { checkResponse } from '../../utils/getUrl'
@@ -15,37 +10,38 @@ import { checkResponse } from '../../utils/getUrl'
 // components
 import AuthButtons from '../../components/AuthButtons/AuthButtons'
 
-// styles
-import styles from './resetPassword.module.css'
+// hooks
+import useForm from '../../hooks/useForm'
 
-const ResetPassword = () => {
-  const location = useLocation()
+// styles
+import styles from './forgotPassword.module.css'
+
+const ForgotPassword: React.FC = () => {
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (!location.state?.isVisited) {
-      navigate('/forgot-password')
-    }
-  }, [location.state?.isVisited, navigate])
-
   const [form, handleForm] = useForm({
-    password: '',
-    token: '',
+    email: '',
   })
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
     const headers = { 'Content-Type': 'application/json' }
     const body = JSON.stringify(form)
 
-    fetch('https://norma.nomoreparties.space/api/password-reset/reset', {
+    fetch('https://norma.nomoreparties.space/api/password-reset', {
       method: 'POST',
       headers,
       body,
     })
       .then(checkResponse)
-      .then((res) => console.log(res))
+      .then((res) =>
+        navigate('/reset-password', {
+          state: {
+            isVisited: true,
+          },
+        }),
+      )
       .catch((error) => console.log(error))
   }
 
@@ -53,21 +49,11 @@ const ResetPassword = () => {
     <main className="content">
       <h2>Восстановление пароля</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <PasswordInput
-          name="password"
-          placeholder="Введите новый пароль"
+        <EmailInput
+          name="email"
+          placeholder="Укажите e-mail"
           autoFocus
-          value={form.password}
-          onChange={handleForm}
-        />
-
-        <Input
-          type="text"
-          placeholder="Введите код из письма"
-          name="token"
-          errorText="Ошибка"
-          size="default"
-          value={form.token}
+          value={form.email}
           onChange={handleForm}
         />
 
@@ -86,4 +72,4 @@ const ResetPassword = () => {
   )
 }
 
-export default ResetPassword
+export default ForgotPassword

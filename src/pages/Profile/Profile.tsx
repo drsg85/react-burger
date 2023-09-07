@@ -1,13 +1,14 @@
-import { useDispatch } from 'react-redux'
 import { NavLink, Outlet } from 'react-router-dom'
 
 // redux
+import { useDispatch } from 'redux/store'
+
 import { handleLogout } from '../../redux/actions/authActions'
 
 // styles
 import styles from './profile.module.css'
 
-const Profile = () => {
+const Profile: React.FC = () => {
   const dispatch = useDispatch()
 
   const onCliclLogout = () => {

@@ -9,7 +9,7 @@ import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors'
 import BurgerIngredients from '../../components/BurgerIngredients/BurgerIngredients'
 import BurgerConstructor from '../../components/BurgerConstructor/BurgerConstructor'
 
-function MainPage() {
+const MainPage: React.FC = () => {
   const { isLoading, hasError, ingredients } = useSelector(ingredientsSelector)
 
   return (

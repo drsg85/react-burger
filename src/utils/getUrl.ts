@@ -3,9 +3,6 @@ import { getCookie } from './cookie'
 import { fetchWithRefresh } from './fetchWithRefresh'
 import { ORDER_URL } from './constants'
 
-// export const checkResponse = (res: Response) => {
-//   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err))
-// }
 export const checkResponse = <T>(res: Response): Promise<T> => {
   return res.ok
     ? (res.json() as Promise<T>)

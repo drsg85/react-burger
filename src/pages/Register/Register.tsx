@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux'
 import {
   Button,
   Input,
@@ -7,6 +6,8 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
 // redux
+import { useDispatch } from 'redux/store'
+
 import { handleRegister } from '../../redux/actions/authActions'
 
 // hooks
@@ -18,17 +19,16 @@ import AuthButtons from '../../components/AuthButtons/AuthButtons'
 // styles
 import styles from './register.module.css'
 
-const Register = () => {
+const Register: React.FC = () => {
   const dispatch = useDispatch()
 
-  //! Типизировать из файла types/requests
   const [form, handleForm] = useForm({
     name: '',
     email: '',
     password: '',
   })
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
     dispatch(handleRegister(form))

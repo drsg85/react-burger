@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux'
 import {
   EmailInput,
   Input,
@@ -6,20 +5,24 @@ import {
   Button,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
+// Types
+import { ISetUserRequest } from 'types'
+
 // Redux
-import { handleSetUser } from '../../redux/actions/authActions'
+import { useDispatch, useSelector } from 'redux/store'
+import { handleSetUser } from 'redux/actions'
 
 // Hooks
-import useForm from '../../hooks/useForm'
+import { useForm } from '../../hooks/useForm'
 
 // styles
 import styles from './profileInfo.module.css'
 
-const ProfileInfo = () => {
+const ProfileInfo: React.FC = () => {
   const dispatch = useDispatch()
   const user = useSelector((store) => store.auth.user)
 
-  const initialForm = {
+  const initialForm: ISetUserRequest = {
     name: user ? user.name : '',
     email: user?.email || '',
     password: '',
@@ -30,7 +33,7 @@ const ProfileInfo = () => {
   // isFormEdited
   const isFormEdited = JSON.stringify(initialForm) !== JSON.stringify(form)
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
     dispatch(handleSetUser(form))

@@ -4,7 +4,7 @@ import React from 'react'
 import Modal from '../Modal/Modal'
 import IngredientDetailsWrapper from '../IngredientDetailsWrapper/IngredientDetailsWrapper'
 
-const IngredientDetailsModal = () => {
+const IngredientDetailsModal: React.FC = () => {
   return (
     <Modal title="Детали ингредиента">
       <IngredientDetailsWrapper />

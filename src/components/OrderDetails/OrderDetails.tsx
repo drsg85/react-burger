@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux'
-
 // Redux
+import { useSelector } from 'redux/store'
+
 import { orderSelector } from '../../redux/selectors/orderSelectors'
 
 // Assets
@@ -9,7 +9,7 @@ import checkImage from '../../img/ok.png'
 // Styles
 import styles from './orderDetails.module.css'
 
-const OrderDetails = () => {
+const OrderDetails: React.FC = () => {
   const { orderInfo } = useSelector(orderSelector)
 
   return (

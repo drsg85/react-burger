@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux'
 import {
   Button,
   EmailInput,
@@ -6,6 +5,8 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
 // redux
+import { useDispatch } from 'redux/store'
+
 import { handleLogin } from '../../redux/actions/authActions'
 
 // components
@@ -17,7 +18,7 @@ import useForm from '../../hooks/useForm'
 // styles
 import styles from './login.module.css'
 
-const Login = () => {
+const Login: React.FC = () => {
   const dispatch = useDispatch()
 
   const [form, handleForm] = useForm({
@@ -25,7 +26,7 @@ const Login = () => {
     password: '',
   })
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
     dispatch(handleLogin(form))
