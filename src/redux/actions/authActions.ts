@@ -1,4 +1,16 @@
 import { AppThunk } from 'redux/store'
+
+// Types
+import {
+  IGetUserResponse,
+  ILoginRequest,
+  ILoginResponse,
+  IRegisterRequest,
+  IRegisterResponse,
+  ISetUserRequest,
+  ISetUserResponse,
+} from 'types'
+
 import {
   registerRequest,
   registerSuccess,
@@ -17,24 +29,11 @@ import {
   setUserError,
 } from '../actionCreators/authActionCreators'
 
-// Types
-import {
-  IGetUserResponse,
-  ILoginRequest,
-  ILoginResponse,
-  IRegisterRequest,
-  IRegisterResponse,
-  ISetUserRequest,
-  ISetUserResponse,
-} from 'types'
-
 // Utils
 import { deleteCookie, getCookie, setCookie } from '../../utils/cookie'
 import { fetchWithRefresh } from '../../utils/fetchWithRefresh'
 import { checkResponse } from '../../utils/getUrl'
 import { saveTokens } from '../../utils/saveTokens'
-
-// Typing
 
 // register action
 export const handleRegister =

@@ -3,7 +3,7 @@ import { AppThunk } from 'redux/store'
 
 // Types and utils
 import { IIngredient, IIngredientsRespose } from 'types'
-import { INGREDIENTS_URL } from 'utils/constants'
+import { INGREDIENTS_URL } from 'utils/'
 import { checkResponse } from 'utils/getUrl'
 
 // Typing
