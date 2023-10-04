@@ -6,12 +6,13 @@ import { useDispatch } from 'redux/store'
 import { getIngredients, handleGetUser } from 'redux/actions'
 
 // Pages
-import MainPage from '../../pages/MainPage/MainPage'
-import Login from '../../pages/Login/Login'
-import Profile from '../../pages/Profile/Profile'
-import Register from '../../pages/Register/Register'
-import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword'
-import ResetPassword from '../../pages/ResetPassword/ResetPassword'
+import MainPage from 'pages/MainPage/MainPage'
+import Login from 'pages/Login/Login'
+import Profile from 'pages/Profile/Profile'
+import Register from 'pages/Register/Register'
+import ForgotPassword from 'pages/ForgotPassword/ForgotPassword'
+import ResetPassword from 'pages/ResetPassword/ResetPassword'
+import FeedPage from 'pages/FeedPage/FeedPage'
 
 // Components
 import AppHeader from '../AppHeader/AppHeader'
@@ -36,7 +37,7 @@ const App = () => {
       <Routes location={background || location}>
         <Route path="/" element={<MainPage />} />
 
-        <Route path="/feed" element={<h1>лента заказов</h1>} />
+        <Route path="/feed" element={<FeedPage />} />
 
         <Route
           path="/profile"
