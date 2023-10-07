@@ -1,0 +1,56 @@
+@mixin scrollbar {
+  /* overflow-y: overlay; */
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 6px;
+    /* background-color: $input; */
+    // margin-block-end: 3em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    /* border: 3px solid $input;
+		background-color: $text-secondary; */
+
+    /* &:hover {
+			background-color: lighten($text-secondary, 10);
+		} */
+  }
+}
+
+/* @mixin scrollbar-with-margin {
+  @include scrollbar;
+
+  &::-webkit-scrollbar-track {
+    margin-block-end: 60px;
+  }
+} */
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding: 0 8px 60px;
+
+  /* @include scrollbar-with-margin;
+	overflow-y: auto;
+	overflow-x: hidden; */
+}
