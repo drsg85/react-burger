@@ -7,6 +7,7 @@ import { ingredientDetailsReducer } from './IngredientDetailsReducer'
 import { orderReducer } from './orderReducer'
 import { authReducer } from './authReducer'
 import { allOrdersWSReducer } from './allOrdersWSReducer'
+import { userOrdersWSReducer } from './userOrdersWSReducer'
 
 export const rootReducer = combineReducers({
   ingredients: ingredientReducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   orderDetails: orderReducer,
   auth: authReducer,
   allOrders: allOrdersWSReducer,
+  userOrders: userOrdersWSReducer,
 })

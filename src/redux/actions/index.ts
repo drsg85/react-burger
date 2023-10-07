@@ -6,6 +6,7 @@ import { ConstructorActions } from './constructorActions'
 import { IngredientDetailsActions } from './ingredientDetailsAction'
 import { IngredientActions } from './ingredientsActions'
 import { OrderActions } from './orderActions'
+import { userOrdersWSActions } from './userOrdersWSActions'
 
 export type TAppActions =
   | IngredientDetailsActions
@@ -14,6 +15,7 @@ export type TAppActions =
   | OrderActions
   | AuthActions
   | allOrdersWSActions
+  | userOrdersWSActions
 
 export * from './authActions'
 export * from './constructorActions'

@@ -20,6 +20,7 @@ import ProfileInfo from '../ProfileInfo/ProfileInfo'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal'
 import IngredientPage from '../../pages/IngredientPage/IngredientPage'
+import UserOrdersPage from 'pages/UserOrdersPage/UserOrdersPage'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -44,7 +45,7 @@ const App = () => {
           element={<ProtectedRoute element={<Profile />} />}
         >
           <Route path="" element={<ProfileInfo />} />
-          <Route path="orders" element={<h1>Страница заказов</h1>} />
+          <Route path="orders" element={<UserOrdersPage />} />
         </Route>
 
         <Route

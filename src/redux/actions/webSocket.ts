@@ -4,6 +4,12 @@ import {
   getAllOrders,
   successAllOrdersWSConnection,
 } from 'redux/actionCreators/allOrdersActionCreators'
+import {
+  closedUserOrdersWSConnection,
+  errorUserOrdersWSConnection,
+  getUserOrders,
+  successUserOrdersWSConnection,
+} from 'redux/actionCreators/userOrdersActionCreators'
 
 export interface IWSOrder {
   ingredients: string[]
@@ -43,4 +49,22 @@ export const allOrdersMiddlewareProp = {
   onMessage: getAllOrders,
   onError: errorAllOrdersWSConnection,
   onClose: closedAllOrdersWSConnection,
+}
+
+export enum userOrdersWSActionTypes {
+  START = 'WS_USER_ORDERS_CONNECTION_START',
+  STOP = 'WS_USER_ORDERS_CONNECTION_STOP',
+  SUCCESS = 'WS_USER_ORDERS_CONNECTION_SUCCESS',
+  CLOSED = 'WS_USER_ORDERS_CONNECTION_CLOSED',
+  ERROR = 'WS_USER_ORDERS_CONNECTION_ERROR',
+  GET_ORDERS = 'WS_USER_ORDERS_GET_ALL_ORDERS',
+}
+
+export const userOrdersMiddlewareProp = {
+  wsStart: userOrdersWSActionTypes.START,
+  wsStop: userOrdersWSActionTypes.STOP,
+  onOpen: successUserOrdersWSConnection,
+  onMessage: getUserOrders,
+  onError: errorUserOrdersWSConnection,
+  onClose: closedUserOrdersWSConnection,
 }
