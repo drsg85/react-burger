@@ -1,3 +1,4 @@
+import OrderFeed from 'components/OrderFeed/OrderFeed'
 import { FC, useEffect } from 'react'
 import {
   startUserOrdersWSConnection,
@@ -24,17 +25,16 @@ const UserOrdersPage: FC = () => {
 
   return (
     <div>
-      <h2>Лента заказов</h2>
       {orders ? (
         <div>
           {orders.map((order) => (
             <>
-              <p>{order._id}</p>
+              <OrderFeed orders={orders} modalPath={'/feed'} />
             </>
           ))}
         </div>
       ) : (
-        <h4>Тут будет загрузка</h4>
+        <h4>Загрузка</h4>
       )}
     </div>
   )

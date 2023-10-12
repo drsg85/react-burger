@@ -38,7 +38,7 @@ export const FeedPage: FC = () => {
           <OrderInfo />
         </>
       ) : (
-        <h4>Тут будет загрузка</h4>
+        <h4>Загрузка</h4>
       )}
     </main>
   )
