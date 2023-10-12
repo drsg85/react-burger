@@ -8,7 +8,7 @@
   &::-webkit-scrollbar-track {
     border-radius: 6px;
     /* background-color: $input; */
-    // margin-block-end: 3em;
+    /* // margin-block-end: 3em; */
   }
 
   &::-webkit-scrollbar-thumb {

@@ -7,7 +7,7 @@ import { IWSOrder } from 'redux/actions/webSocket'
 import OrderCard from 'components/OrderCard/OrderCard'
 
 // Styles
-import styles from './OrderFeed.module.scss'
+import styles from './orderFeed.module.css'
 
 interface IOrderFeed {
   orders: IWSOrder[]

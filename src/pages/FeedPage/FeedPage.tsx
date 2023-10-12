@@ -1,4 +1,9 @@
 import React, { FC, useEffect } from 'react'
+import classNames from 'classnames'
+
+import OrderFeed from 'components/OrderFeed/OrderFeed'
+import OrderInfo from 'components/OrderInfo/OrderInfo'
+
 import { useSelector } from 'react-redux'
 import {
   startAllOrdersWSConnection,
@@ -7,6 +12,8 @@ import {
 import { allOrderWSSelector } from 'redux/selectors/allOrdersWSSelectors'
 import { useDispatch } from 'redux/store'
 import { WS_URL_ALL_ORDERS } from 'utils'
+
+import styles from './feedPage.module.css'
 
 export const FeedPage: FC = () => {
   const dispatch = useDispatch()
@@ -23,9 +30,16 @@ export const FeedPage: FC = () => {
   }, [dispatch])
 
   return (
-    <main>
-      <h2>Лента заказов</h2>
-      {orders ? <h4>Тут будут заказы</h4> : <h4>Тут будет загрузка</h4>}
+    <main className={classNames('container', styles.wrapper)}>
+      {orders ? (
+        <>
+          <h2 className={styles.title}>Лента заказов</h2>
+          <OrderFeed orders={orders} modalPath={'/feed'} />
+          <OrderInfo />
+        </>
+      ) : (
+        <h4>Тут будет загрузка</h4>
+      )}
     </main>
   )
 }

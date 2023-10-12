@@ -2,6 +2,8 @@ import React from 'react'
 
 import { IIngredient } from 'types'
 
+import IngredientIcon from 'components/IngredientIcon/IngredientIcon'
+
 // Styles
 import styles from './ingredientList.module.css'
 
@@ -20,10 +22,10 @@ const IngredientsList: React.FC<IIngredientsList> = ({ ingredients }) => {
       className={styles.item}
       style={{ position: 'absolute', left: i * 48, zIndex: maxLength - i }}
     >
-      {/* <IngredientIcon
+      <IngredientIcon
         image={el.image_mobile}
         counter={i === maxLength - 1 ? counter : 0}
-      /> */}
+      />
     </li>
   ))
 

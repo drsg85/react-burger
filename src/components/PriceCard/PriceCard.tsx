@@ -9,7 +9,7 @@ import { IIngredient } from 'types'
 import { numFormat } from 'utils/numFormat'
 
 // Styles
-import styles from './PriceCard.module.scss'
+import styles from './priceCard.module.css'
 
 interface IPriceCard {
   ingredients?: IIngredient[]
@@ -35,7 +35,7 @@ const PriceCard: React.FC<IPriceCard> = ({
   if (ingredients) totalPrice = numFormat(countPrice(ingredients))
 
   return (
-    <div className={classNames(styles.price, styles[size])}>
+    <div className={`${styles.price} text text_type_digits-default`}>
       <span>
         {prefix && `${prefix} x `}
         {totalPrice}

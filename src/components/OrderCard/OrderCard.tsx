@@ -15,7 +15,7 @@ import IngredientsList from 'components/IngredientsList/IngredientsList'
 import PriceCard from 'components/PriceCard/PriceCard'
 
 // Styles
-import styles from './OrderCard.module.scss'
+import styles from './orderCard.module.css'
 
 interface IOrderCard {
   order: IWSOrder
@@ -48,13 +48,19 @@ const OrderCard: React.FC<IOrderCard> = ({
       to={`${modalPath}/${order.number}`}
     >
       <div className={styles.header}>
-        <h4 className={styles.suptitle}>#{order.number}</h4>
+        <p className={`${styles.suptitle} mb-2 text text_type_digits-default`}>
+          #{order.number}
+        </p>
 
-        <span className={styles.timing}>{displayedDate}</span>
+        <span
+          className={`${styles.timing} text text_type_main-small text_color_inactive`}
+        >
+          {displayedDate}
+        </span>
       </div>
 
-      <div className={styles.title}>
-        <h3>{order.name}</h3>
+      <div className={`${styles.title} text text_type_main-medium`}>
+        <p>{order.name}</p>
 
         {isStatusShown && (
           <p className={styles[`title_${order.status}`]}>
