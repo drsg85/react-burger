@@ -16,16 +16,13 @@ const OrderInfo: React.FC = () => {
     useSelector(allOrderWSSelector)
 
   const doneOrdersList = doneOrders?.slice(0, 12).map((id) => (
-    <li
-      key={id}
-      className={classNames(styles.orders__item, styles.orders__item_done)}
-    >
+    <li key={id} className="text text_type_digits-default">
       {id}
     </li>
   ))
 
   const onworkOrdersList = onworkOrders?.slice(0, 12).map((id) => (
-    <li key={id} className={styles.orders__item}>
+    <li key={id} className="text text_type_digits-default">
       {id}
     </li>
   ))

@@ -43,8 +43,10 @@
 }
 
 .orders__list {
+  padding: 0;
   column-count: 2;
   column-gap: 20px;
+  list-style-type: none;
 }
 
 .allOrders {

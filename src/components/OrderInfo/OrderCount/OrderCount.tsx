@@ -14,7 +14,7 @@ const OrderCount: React.FC<IOrderCount> = ({ title, count }) => {
   return (
     <>
       <h3 className="text text_type_main-medium">{title}</h3>
-      <p className="text text_type_digits-default">{modifiedCount}</p>
+      <p className="text text_type_digits-large">{modifiedCount}</p>
     </>
   )
 }
