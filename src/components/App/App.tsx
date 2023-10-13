@@ -21,6 +21,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal'
 import IngredientPage from '../../pages/IngredientPage/IngredientPage'
 import UserOrdersPage from 'pages/UserOrdersPage/UserOrdersPage'
+import OrderDetailsModal from 'components/OrderDetailsModal/OrderDetailsModal'
+import OrderCardDetailsModal from 'components/OrderCardDetailsModal/OrderCardDetailsModal'
+import OrderPage from 'pages/OrderPage/OrderPage'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -48,6 +51,10 @@ const App = () => {
           <Route path="orders" element={<UserOrdersPage />} />
         </Route>
 
+        {/* Order pages */}
+        <Route path="feed/:id" element={<OrderPage />} />
+        <Route path="profile/orders/:id" element={<OrderPage />} />
+
         <Route
           path="/login"
           element={<ProtectedRoute onlyUnAuth element={<Login />} />}
@@ -74,6 +81,12 @@ const App = () => {
       {background && (
         <Routes>
           <Route path="/ingredients/:id" element={<IngredientDetailsModal />} />
+          <Route path="/order-details" element={<OrderDetailsModal />} />
+          <Route path="/feed/:id" element={<OrderCardDetailsModal />} />
+          <Route
+            path="/profile/orders/:id"
+            element={<OrderCardDetailsModal />}
+          />
         </Routes>
       )}
     </>

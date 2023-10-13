@@ -34,7 +34,7 @@ export const FeedPage: FC = () => {
       {orders ? (
         <>
           <h2 className={styles.title}>Лента заказов</h2>
-          <OrderFeed orders={orders} modalPath={'/feed'} />
+          <OrderFeed orders={orders} modalPath="/feed" />
           <OrderInfo />
         </>
       ) : (

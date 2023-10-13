@@ -28,9 +28,11 @@ const UserOrdersPage: FC = () => {
       {orders ? (
         <div>
           {orders.map((order) => (
-            <>
-              <OrderFeed orders={orders} modalPath={'/feed'} />
-            </>
+            <OrderFeed
+              key={order._id}
+              orders={orders}
+              modalPath="/profile/orders"
+            />
           ))}
         </div>
       ) : (

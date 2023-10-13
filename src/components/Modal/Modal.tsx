@@ -56,12 +56,4 @@ const Modal: React.FC<PropsWithChildren<IModalProps>> = ({
   )
 }
 
-Modal.propTypes = {
-  title: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node).isRequired,
-    PropTypes.node.isRequired,
-  ]),
-}
-
 export default Modal
