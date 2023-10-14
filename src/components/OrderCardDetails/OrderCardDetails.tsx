@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+// Redux
+import { IWSOrder } from 'redux/actions/webSocket'
+
 // Utils
 import { ORDER_URL, checkResponse } from 'utils'
+
+// Components
 import OrderCardDetailsBody from './OrderCardDetailsBody/OrderCardDetailsBody'
-import { IWSOrder } from 'redux/actions/webSocket'
 
 const OrderCardDetails = () => {
   const { id = '' } = useParams()
