@@ -30,16 +30,6 @@
   display: flex;
   flex-direction: column;
   row-gap: 24px;
-  /* &__item {
-    @include font-digits-small;
-
-    &_done {
-      color: $success;
-    } */
-
-  /* &:not(:nth-child(6n)) {
-      margin-bottom: 8px;
-    } */
 }
 
 .orders__list {
