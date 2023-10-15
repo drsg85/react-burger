@@ -1,18 +1,22 @@
-import React, { FC, useEffect } from 'react'
+import  { FC, useEffect } from 'react'
 import classNames from 'classnames'
 
-import OrderFeed from 'components/OrderFeed/OrderFeed'
-import OrderInfo from 'components/OrderInfo/OrderInfo'
+// Utils
+import { WS_URL_ALL_ORDERS } from 'utils'
 
-import { useSelector } from 'react-redux'
+// Redux
+import { useDispatch, useSelector } from 'redux/store'
 import {
   startAllOrdersWSConnection,
   stopAllOrdersWSConnection,
-} from 'redux/actionCreators/allOrdersActionCreators'
-import { allOrderWSSelector } from 'redux/selectors/allOrdersWSSelectors'
-import { useDispatch } from 'redux/store'
-import { WS_URL_ALL_ORDERS } from 'utils'
+} from 'redux/actionCreators'
+import { allOrderWSSelector } from 'redux/selectors'
 
+// Components
+import OrderFeed from 'components/OrderFeed/OrderFeed'
+import OrderInfo from 'components/OrderInfo/OrderInfo'
+
+// Styles
 import styles from './feedPage.module.css'
 
 export const FeedPage: FC = () => {

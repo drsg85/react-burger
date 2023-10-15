@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
 // Redux
-import { ingredientsSelector } from '../../redux/selectors/ingredientsSelectors'
+import { useSelector } from 'redux/store'
+import { ingredientsSelector } from 'redux/selectors'
 
 // Components
 import BurgerIngredients from '../../components/BurgerIngredients/BurgerIngredients'
