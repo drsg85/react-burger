@@ -1,20 +1,21 @@
 import React from 'react'
 import { useDrop, useDrag } from 'react-dnd'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useDispatch, useSelector } from 'react-redux'
 import { Identifier, XYCoord } from 'dnd-core'
 
+// Utils and types
 import { IConstructorIngredient } from 'types'
+import { sortFunc } from 'utils'
 
 // Redux
+import { useDispatch, useSelector } from 'redux/store'
 import {
   removeIngredient,
   reorderIngredients,
-} from '../../../redux/actions/constructorActions'
-import { constructorSelector } from '../../../redux/selectors'
+} from 'redux/actions'
+import { constructorSelector } from 'redux/selectors'
 
 // Utils
-import { sortFunc } from '../../../utils/sortFunc'
 
 interface IConstructorItem {
   ingredient: IConstructorIngredient

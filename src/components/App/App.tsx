@@ -6,12 +6,13 @@ import { useDispatch } from 'redux/store'
 import { getIngredients, handleGetUser } from 'redux/actions'
 
 // Pages
-import MainPage from '../../pages/MainPage/MainPage'
-import Login from '../../pages/Login/Login'
-import Profile from '../../pages/Profile/Profile'
-import Register from '../../pages/Register/Register'
-import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword'
-import ResetPassword from '../../pages/ResetPassword/ResetPassword'
+import MainPage from 'pages/MainPage/MainPage'
+import Login from 'pages/Login/Login'
+import Profile from 'pages/Profile/Profile'
+import Register from 'pages/Register/Register'
+import ForgotPassword from 'pages/ForgotPassword/ForgotPassword'
+import ResetPassword from 'pages/ResetPassword/ResetPassword'
+import FeedPage from 'pages/FeedPage/FeedPage'
 
 // Components
 import AppHeader from '../AppHeader/AppHeader'
@@ -19,6 +20,10 @@ import ProfileInfo from '../ProfileInfo/ProfileInfo'
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal'
 import IngredientPage from '../../pages/IngredientPage/IngredientPage'
+import UserOrdersPage from 'pages/UserOrdersPage/UserOrdersPage'
+import OrderDetailsModal from 'components/OrderDetailsModal/OrderDetailsModal'
+import OrderCardDetailsModal from 'components/OrderCardDetailsModal/OrderCardDetailsModal'
+import OrderPage from 'pages/OrderPage/OrderPage'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -36,15 +41,19 @@ const App = () => {
       <Routes location={background || location}>
         <Route path="/" element={<MainPage />} />
 
-        <Route path="/feed" element={<h1>лента заказов</h1>} />
+        <Route path="/feed" element={<FeedPage />} />
 
         <Route
           path="/profile"
           element={<ProtectedRoute element={<Profile />} />}
         >
           <Route path="" element={<ProfileInfo />} />
-          <Route path="orders" element={<h1>Страница заказов</h1>} />
+          <Route path="orders" element={<UserOrdersPage />} />
         </Route>
+
+        {/* Order pages */}
+        <Route path="feed/:id" element={<OrderPage />} />
+        <Route path="profile/orders/:id" element={<OrderPage />} />
 
         <Route
           path="/login"
@@ -72,6 +81,12 @@ const App = () => {
       {background && (
         <Routes>
           <Route path="/ingredients/:id" element={<IngredientDetailsModal />} />
+          <Route path="/order-details" element={<OrderDetailsModal />} />
+          <Route path="/feed/:id" element={<OrderCardDetailsModal />} />
+          <Route
+            path="/profile/orders/:id"
+            element={<OrderCardDetailsModal />}
+          />
         </Routes>
       )}
     </>

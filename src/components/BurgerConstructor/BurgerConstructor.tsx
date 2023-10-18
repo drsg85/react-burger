@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useDrop } from 'react-dnd'
 import {
   ConstructorElement,
@@ -9,12 +9,12 @@ import {
 
 // Redux
 import { useDispatch, useSelector } from 'redux/store'
-import { setBun, setIngredient } from '../../redux/actions/constructorActions'
+import { setOrder, setBun, setIngredient } from 'redux/actions'
 import {
+  authSelector,
   ingredientsListSelector,
   constructorSelector,
-} from '../../redux/selectors'
-import { setOrder } from '../../redux/actions/orderActions'
+} from 'redux/selectors'
 
 // Components
 import Modal from '../Modal/Modal'
@@ -25,11 +25,11 @@ import BurgerItem from './BurgerItem/BurgerItem'
 
 // Styles
 import styles from './burgerConstructor.module.css'
-import { authSelector } from 'redux/selectors/authSelectors'
 
 const BurgerConstructor = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const { user } = useSelector(authSelector)
   const ingredientsList = useSelector(ingredientsListSelector)
   const { bun, ingredients } = useSelector(constructorSelector)
@@ -60,8 +60,6 @@ const BurgerConstructor = () => {
     }
   }
 
-  const [orderModal, setOrderModal] = useState(false)
-
   const fetchOrder = () => {
     if (!user) {
       navigate('/login')
@@ -71,12 +69,10 @@ const BurgerConstructor = () => {
       const bunId = bun._id
       const ingredientsIds = ingredients.map((ingredient) => ingredient._id)
       dispatch(setOrder([bunId, ...ingredientsIds, bunId]))
-      setOrderModal(true)
+      navigate('/order-details', {
+        state: { background: location },
+      })
     }
-  }
-
-  const closeOrderModal = () => {
-    setOrderModal(false)
   }
 
   // BurgerIngredients
@@ -133,11 +129,6 @@ const BurgerConstructor = () => {
         >
           Оформить заказ
         </Button>
-        {orderModal && (
-          <Modal>
-            <OrderDetails />
-          </Modal>
-        )}
       </div>
     </section>
   )

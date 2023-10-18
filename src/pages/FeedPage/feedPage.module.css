@@ -1,0 +1,22 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'header header'
+    'feed info';
+  gap: 20px 60px;
+}
+
+.title {
+  padding: 0 8px;
+
+  grid-area: header;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 16px;
+  width: 100%;
+}

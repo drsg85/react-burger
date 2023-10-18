@@ -112,7 +112,13 @@ export const handleGetUser = (): AppThunk => (dispatch) => {
   const rawAccessToken = getCookie('accessToken')
   const accessToken = rawAccessToken && 'Bearer '.concat(rawAccessToken)
 
-  if (!accessToken) return
+
+
+  if (!accessToken) {
+    dispatch(getUserError())
+    
+    return
+  }
 
   dispatch(getUserRequest())
 

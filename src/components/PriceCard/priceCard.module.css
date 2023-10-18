@@ -1,0 +1,9 @@
+.price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8px;
+  color: rgb(242, 242, 243);
+  white-space: nowrap;
+}
+

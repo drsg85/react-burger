@@ -1,0 +1,33 @@
+import { IUserOrders, userOrdersWSActionTypes } from './webSocket'
+
+export interface startUserOrdersWSConnectionA {
+  type: userOrdersWSActionTypes.START
+  payload: string
+}
+export interface stopUserOrdersWSConnectionA {
+  type: userOrdersWSActionTypes.STOP
+}
+export interface successUserOrdersWSConnectionA {
+  type: userOrdersWSActionTypes.SUCCESS
+  payload: Event
+}
+export interface closedUserOrdersWSConnectionA {
+  type: userOrdersWSActionTypes.CLOSED
+  payload: Event
+}
+export interface errorUserOrdersWSConnectionA {
+  type: userOrdersWSActionTypes.ERROR
+  payload: Event
+}
+export interface getUserOrdersA {
+  type: userOrdersWSActionTypes.GET_ORDERS
+  payload: IUserOrders
+}
+
+export type userOrdersWSActions =
+  | startUserOrdersWSConnectionA
+  | stopUserOrdersWSConnectionA
+  | successUserOrdersWSConnectionA
+  | closedUserOrdersWSConnectionA
+  | errorUserOrdersWSConnectionA
+  | getUserOrdersA

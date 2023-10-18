@@ -5,6 +5,9 @@ import {
   Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components'
 
+import { useSelector } from 'redux/store'
+import { constructorSelector } from 'redux/selectors'
+
 // Types and utils
 import { IIngredient } from 'types'
 
@@ -16,8 +19,11 @@ export interface IIngredientProps {
   onClick: (burgersData: IIngredient) => void
 }
 
+
 const Ingredient: React.FC<IIngredientProps> = ({ burgersData, onClick }) => {
   const { image, price, name, _id } = burgersData
+  
+  const { bun, ingredients } = useSelector(constructorSelector)
 
   const openClick = () => {
     onClick(burgersData)
@@ -30,6 +36,19 @@ const Ingredient: React.FC<IIngredientProps> = ({ burgersData, onClick }) => {
       isDragging: monitor.isDragging(),
     }),
   }))
+
+  const countValue = count()
+
+  function count(): number {
+    if(burgersData.type === 'bun') {
+      return burgersData._id === bun?._id ? 2 : 0
+    } else {
+      if (!ingredients) return 0
+      
+      return ingredients.filter((ingredient) => ingredient._id === burgersData._id).length
+    }
+
+  }
 
   return (
     <li
@@ -52,7 +71,7 @@ const Ingredient: React.FC<IIngredientProps> = ({ burgersData, onClick }) => {
       </p>
       <p className={`${styles.name} text text_type_main-default`}>{name}</p>
       <span className={styles.counter}>
-        <Counter count={1} size="default" extraClass="m-1" />
+        {Boolean(countValue) && <Counter count={countValue} size="default" extraClass="m-1" />}
       </span>
     </li>
   )
