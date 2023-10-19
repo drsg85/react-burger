@@ -1,7 +1,7 @@
 import { IIngredient } from 'types'
 import { IngredientDetailsActions } from 'redux/actions/ingredientDetailsAction'
 
-interface IIngredientDetailsState {
+export interface IIngredientDetailsState {
   ingredient: IIngredient | null
 }
 

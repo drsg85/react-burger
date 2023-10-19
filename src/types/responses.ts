@@ -20,6 +20,11 @@ export interface ILoginResponse {
   refreshToken: string
 }
 
+export interface ILogoutResponse {
+  success: boolean
+  message: string
+}
+
 export interface IErrorResponse {
   success: boolean
   message: string

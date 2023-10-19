@@ -1,6 +1,6 @@
 import { AuthActions } from 'redux/actionCreators/authActionCreators'
 
-interface IAuthState {
+export interface IAuthState {
   isLoading: boolean
   hasError: boolean
   user: {
