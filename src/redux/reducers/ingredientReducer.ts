@@ -20,7 +20,7 @@ export const ingredientReducer = (
   switch (action.type) {
     case 'INGREDIENTS_REQUEST':
       return {
-        ...state,
+        ...initialState,
         isLoading: true,
       }
 
