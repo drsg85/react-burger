@@ -102,3 +102,4 @@ describe('Test on open ingredient modal', function () {
 })
 
 // Ошибку Timed out retrying after 4000ms: cy.trigger() не, ни кураторы не смогли победить
+// Проект билдится, все модули на месте. На всякий случай сделал очистку кеша гита, как вы рекомендовали.
