@@ -64,6 +64,7 @@ const ProfileInfo: React.FC = () => {
         icon="EditIcon"
         value={form.password}
         onChange={handleForm}
+        disabled={false}
       />
 
       {isFormEdited && (

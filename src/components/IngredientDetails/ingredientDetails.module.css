@@ -1,26 +1,30 @@
 .ingredientDetails {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 100px;
-    padding-right: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 100px;
+  padding-right: 60px;
 }
 
 .name {
-    text-align: center;
+  text-align: center;
 }
 
 .image {
-    height: 240px;
+  height: 240px;
 }
 
 .components {
-    display: flex;
+  display: flex;
 }
 
 .component {
-    width: 120px;
-    text-align: center;
-    line-height: 24px;
+  width: 120px;
+  text-align: center;
+  line-height: 24px;
+}
+
+.ingredientDetails__value {
+  color: inherit;
 }

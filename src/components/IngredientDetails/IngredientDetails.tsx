@@ -29,25 +29,33 @@ const IngredientDetails: React.FC<IIngredientDetailsProps> = ({
         >
           Калории,ккал
           <br />
-          {ingredient.calories}
+          <span className={styles.ingredientDetails__value}>
+            {ingredient.calories}
+          </span>
         </p>
         <p
           className={`${styles.component} text text_type_main-small text_color_inactive mr-5`}
         >
           Белки, г<br />
-          {ingredient.proteins}
+          <span className={styles.ingredientDetails__value}>
+            {ingredient.proteins}
+          </span>
         </p>
         <p
           className={`${styles.component} text text_type_main-small text_color_inactive mr-5`}
         >
           Жиры, г<br />
-          {ingredient.fat}
+          <span className={styles.ingredientDetails__value}>
+            {ingredient.fat}
+          </span>
         </p>
         <p
           className={`${styles.component} text text_type_main-small text_color_inactive`}
         >
           Углеводы, г<br />
-          {ingredient.carbohydrates}
+          <span className={styles.ingredientDetails__value}>
+            {ingredient.carbohydrates}
+          </span>
         </p>
       </div>
     </div>

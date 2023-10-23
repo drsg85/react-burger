@@ -31,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -57,12 +58,14 @@
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
+    "prettier": "^2.8.1",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-cypress": "^2.13.2",
+    "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
-    "prettier": "^2.8.1",
+    "cypress": "^13.3.2",
+    "@4tw/cypress-drag-drop": "^2.2.3",
     "jest": "^27.5.1",
     "fetch-mock": "^9.11.0",
     "react-test-renderer": "^18.2.0",
