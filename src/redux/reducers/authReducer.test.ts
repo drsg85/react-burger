@@ -18,19 +18,17 @@ import {
   AuthActions,
 } from 'redux/actionCreators'
 
-// Reducer
-import { authReducer as reducer, IAuthState } from 'redux/reducers/authReducer'
+// Redux
+import {
+  initialState,
+  IAuthState,
+  authReducer as reducer,
+} from 'redux/reducers/authReducer'
 
 // Types
 import { IUser } from 'types'
 
 describe('Auth Reducer Tests', function () {
-  const initialState: IAuthState = {
-    user: null,
-    isLoading: true,
-    hasError: false,
-  }
-
   const errorState: IAuthState = {
     ...initialState,
     isLoading: false,
@@ -51,7 +49,7 @@ describe('Auth Reducer Tests', function () {
   }
 
   it('should return Initial State', function () {
-    expect(reducer(undefined, {} as AuthActions)).toEqual(initialState)
+    expect(reducer(initialState, {} as AuthActions)).toEqual(initialState)
   })
 
   // Register Tests

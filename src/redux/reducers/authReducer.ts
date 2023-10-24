@@ -9,7 +9,7 @@ export interface IAuthState {
   } | null
 }
 
-const initialState: IAuthState = {
+export const initialState: IAuthState = {
   isLoading: true,
   hasError: false,
   user: null,

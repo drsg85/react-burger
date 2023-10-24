@@ -9,6 +9,7 @@ import {
 } from 'redux/actionCreators'
 
 import {
+  initialState,
   IWSAllOrdersState,
   allOrdersWSReducer as reducer,
 } from './allOrdersWSReducer'
@@ -25,15 +26,6 @@ describe('All Orders WS Reducer tests', () => {
       totalToday: 42,
     }),
   } as MessageEvent
-
-  const initialState: IWSAllOrdersState = {
-    wsConnected: false,
-    orders: null,
-    onworkOrders: null,
-    doneOrders: null,
-    total: 0,
-    totalToday: 0,
-  }
 
   const successState: IWSAllOrdersState = {
     ...initialState,

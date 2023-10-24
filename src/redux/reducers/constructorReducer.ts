@@ -8,7 +8,7 @@ interface IConstructorState {
   ingredients: IConstructorIngredient[] | null
 }
 
-const initialState: IConstructorState = {
+export const initialState: IConstructorState = {
   bun: null,
   ingredients: null,
 }

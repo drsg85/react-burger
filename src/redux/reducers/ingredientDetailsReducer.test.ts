@@ -9,15 +9,12 @@ import {
 } from 'redux/actions'
 
 import {
+  initialState,
   IIngredientDetailsState,
   ingredientDetailsReducer as reducer,
 } from './IngredientDetailsReducer'
 
 describe('Ingredient Details Reducer test', () => {
-  const initialState: IIngredientDetailsState = {
-    ingredient: null,
-  }
-
   it('should return the initial state', () => {
     expect(reducer(initialState, {} as IngredientDetailsActions)).toEqual(
       initialState,

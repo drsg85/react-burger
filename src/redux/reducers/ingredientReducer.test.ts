@@ -1,21 +1,18 @@
+// Types
+import { IIngredient } from 'types'
+
+// Redux
 import {
   IngredientActions,
   getIngredientsError,
   getIngredientsRequest,
   getIngredientsSuccess,
 } from 'redux/actions'
-import { ingredientReducer as reducer } from './ingredientReducer'
-import { IIngredient } from 'types'
+import { initialState, ingredientReducer as reducer } from './ingredientReducer'
 import { mockBun, mockMain, mockSauce } from './mockData'
 
 describe('Ingredient Reducer tests', function () {
   const ingredients: IIngredient[] = [mockBun, mockMain, mockSauce]
-
-  const initialState = {
-    isLoading: false,
-    hasError: false,
-    ingredients: null,
-  }
 
   const requestState = {
     ...initialState,

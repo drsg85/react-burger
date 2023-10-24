@@ -12,8 +12,9 @@ import {
 // MockData
 import { mockOrder } from './mockData'
 import {
-  userOrdersWSReducer as reducer,
+  initialState,
   IWSUserOrdersState,
+  userOrdersWSReducer as reducer,
 } from './userOrdersWSReducer'
 
 // Reducer
@@ -25,11 +26,6 @@ describe('User Orders WS Reducer tests', function () {
       orders: [mockOrder('done'), mockOrder('pending'), mockOrder('created')],
     }),
   } as MessageEvent
-
-  const initialState: IWSUserOrdersState = {
-    wsConnected: false,
-    orders: null,
-  }
 
   const successState: IWSUserOrdersState = {
     ...initialState,

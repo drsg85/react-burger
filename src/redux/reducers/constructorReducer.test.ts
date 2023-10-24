@@ -12,7 +12,10 @@ import {
 } from 'redux/actions'
 
 // Reducer
-import { constructorReducer as reducer } from 'redux/reducers/constructorReducer'
+import {
+  initialState,
+  constructorReducer as reducer,
+} from 'redux/reducers/constructorReducer'
 
 // MockData
 import {
@@ -31,11 +34,6 @@ Object.defineProperty(global.self, 'crypto', {
 })
 
 describe('Cart Reducer tests', function () {
-  const initialState = {
-    bun: null,
-    ingredients: null,
-  }
-
   const setBunState = {
     ...initialState,
     bun: mockBun,

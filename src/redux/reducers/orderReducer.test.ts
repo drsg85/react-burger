@@ -1,4 +1,8 @@
-import { IOrderState, orderReducer as reducer } from './orderReducer'
+import {
+  initialState,
+  IOrderState,
+  orderReducer as reducer,
+} from './orderReducer'
 import {
   OrderActions,
   orderError,
@@ -7,12 +11,6 @@ import {
 } from './../actions/orderActions'
 
 describe('Order Reducer tests', () => {
-  const initialState: IOrderState = {
-    isLoading: false,
-    hasError: false,
-    orderInfo: null,
-  }
-
   const requestState = {
     ...initialState,
     isLoading: true,
