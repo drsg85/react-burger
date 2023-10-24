@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Link } from 'react-scroll'
-import { v4 as uuidv4 } from 'uuid'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 
 // Types
@@ -85,7 +84,7 @@ const BurgerIngredients: React.FC = () => {
           ?.filter((ingredient) => ingredient.type === category.type)
           .map((ingredient) => (
             <Ingredient
-              key={uuidv4()}
+              key={ingredient._id}
               burgersData={ingredient}
               onClick={() => onClickIngredient(ingredient)}
             />
