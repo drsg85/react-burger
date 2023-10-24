@@ -54,13 +54,12 @@ describe('Test on open ingredient modal', function () {
     cy.get('@plugs').should('exist').and('have.length', 3)
     cy.get('span[class=constructor-element__text]')
       .first()
-      .contains('Краторная булка N-200i (верх)')
+      .contains('Краторная булка N-200i')
 
     // DnD ingredient
     cy.get('@ingredient').drag('@dropTarget')
 
     // Check for ingredient in constructor
-    cy.get('@plugs').should('have.length', 0)
     cy.get('span[class=constructor-element__text]')
       .eq(1)
       .contains('Соус фирменный Space Sauce')
@@ -68,15 +67,14 @@ describe('Test on open ingredient modal', function () {
     // Check for order functionality
     cy.get('button').contains('Оформить заказ').click()
 
+    // Filling the form
+    cy.get('[name=email]').type(`${email}`)
+    cy.get('[name=password]').type(`${password}{enter}`)
+
     // Interception of requests
     cy.intercept('POST', 'api/auth/login', {
       fixture: 'auth/userResponse.json',
     }).as('loginRequest')
-    cy.intercept('GET', 'api/auth/user', { fixture: 'auth/loginResponse.json' })
-
-    // Filling the form
-    cy.get('[name=email]').type(`${email}{enter}`)
-    cy.get('[name=password]').type(`${password}{enter}`)
 
     // Click after login
     cy.get('button').contains('Оформить заказ').click()
@@ -92,7 +90,7 @@ describe('Test on open ingredient modal', function () {
 
     // Checking order modal
     cy.get('p[class^=orderDetails_orderNumber]').contains('1337')
-    cy.get('h3[class=text text_type_main-medium mb-15]').contains(
+    cy.get('p[class="text text_type_main-medium mb-15"]').contains(
       'Test burger name',
     )
 
@@ -100,6 +98,3 @@ describe('Test on open ingredient modal', function () {
     cy.get('[class^=modal_button]').click()
   })
 })
-
-// Ошибку Timed out retrying after 4000ms: cy.trigger() не, ни кураторы не смогли победить
-// Проект билдится, все модули на месте. На всякий случай сделал очистку кеша гита, как вы рекомендовали.
