@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDrop } from 'react-dnd'
 import {
@@ -15,10 +14,6 @@ import {
   ingredientsListSelector,
   constructorSelector,
 } from 'redux/selectors'
-
-// Components
-import Modal from '../Modal/Modal'
-import OrderDetails from '../OrderDetails/OrderDetails'
 
 // Nested components
 import BurgerItem from './BurgerItem/BurgerItem'
