@@ -1,14 +1,22 @@
 import { FC } from 'react'
+
+// Redux
 import { IWSOrder } from 'redux/actions/webSocket'
 
+// Hooks
 import { useIngredientsByIds } from 'hooks/useIngredientsByIds'
 
-import PriceCard from 'components/PriceCard/PriceCard'
-import { OrderStatus } from 'components/OrderCard/OrderCard'
-import OrderRow from '../OrderRow/OrderRow'
-
+// Utils
 import { dateConverter } from 'utils/dateConvert'
 
+// Components
+import PriceCard from 'components/PriceCard/PriceCard'
+import { OrderStatus } from 'components/OrderCard/OrderCard'
+
+// Nested components
+import OrderRow from '../OrderRow/OrderRow'
+
+// Styles
 import styles from './orderCardDetailsBody.module.css'
 
 export interface IOrderCardDetailsBodyProps {
@@ -23,11 +31,11 @@ export const OrderCardDetailsBody: FC<IOrderCardDetailsBodyProps> = ({
   // Ingredients
   const currentIngredients = useIngredientsByIds(order.ingredients)
 
-  const ingredientsList = [...new Set(currentIngredients)].map(ingredient => {
+  const ingredientsList = [...new Set(currentIngredients)].map((ingredient) => {
     const count =
       ingredient.type === 'bun'
         ? 2
-        : currentIngredients?.filter(el => el._id === ingredient._id).length
+        : currentIngredients?.filter((el) => el._id === ingredient._id).length
 
     return (
       <OrderRow

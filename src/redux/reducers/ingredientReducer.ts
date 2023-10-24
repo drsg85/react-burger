@@ -7,7 +7,7 @@ interface IIngredientState {
   ingredients: IIngredient[] | null
 }
 
-const initialState: IIngredientState = {
+export const initialState: IIngredientState = {
   isLoading: false,
   hasError: false,
   ingredients: null,
@@ -20,7 +20,7 @@ export const ingredientReducer = (
   switch (action.type) {
     case 'INGREDIENTS_REQUEST':
       return {
-        ...state,
+        ...initialState,
         isLoading: true,
       }
 

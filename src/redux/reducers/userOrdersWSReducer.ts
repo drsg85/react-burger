@@ -7,7 +7,7 @@ export interface IWSUserOrdersState {
   error?: Event | undefined
 }
 
-const initialState: IWSUserOrdersState = {
+export const initialState: IWSUserOrdersState = {
   wsConnected: false,
   orders: null,
 }

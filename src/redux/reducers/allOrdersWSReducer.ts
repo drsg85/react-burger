@@ -12,7 +12,7 @@ export interface IWSAllOrdersState {
   error?: Event | undefined
 }
 
-const initialState: IWSAllOrdersState = {
+export const initialState: IWSAllOrdersState = {
   wsConnected: false,
   orders: null,
   onworkOrders: null,

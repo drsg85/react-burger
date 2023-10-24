@@ -1,6 +1,6 @@
 import { OrderActions } from 'redux/actions/orderActions'
 
-interface IOrderState {
+export interface IOrderState {
   isLoading: boolean
   hasError: boolean
   orderInfo: {
@@ -9,7 +9,7 @@ interface IOrderState {
   } | null
 }
 
-const initialState: IOrderState = {
+export const initialState: IOrderState = {
   isLoading: false,
   hasError: false,
   orderInfo: null,

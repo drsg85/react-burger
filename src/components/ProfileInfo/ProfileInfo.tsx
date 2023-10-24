@@ -11,6 +11,7 @@ import { ISetUserRequest } from 'types'
 // Redux
 import { useDispatch, useSelector } from 'redux/store'
 import { handleSetUser } from 'redux/actions'
+import { authUserSelector } from 'redux/selectors'
 
 // Hooks
 import { useForm } from '../../hooks/useForm'
@@ -20,7 +21,7 @@ import styles from './profileInfo.module.css'
 
 const ProfileInfo: React.FC = () => {
   const dispatch = useDispatch()
-  const user = useSelector((store) => store.auth.user)
+  const user = useSelector(authUserSelector)
 
   const initialForm: ISetUserRequest = {
     name: user ? user.name : '',
@@ -64,6 +65,7 @@ const ProfileInfo: React.FC = () => {
         icon="EditIcon"
         value={form.password}
         onChange={handleForm}
+        disabled={false}
       />
 
       {isFormEdited && (

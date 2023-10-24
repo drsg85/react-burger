@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDrop } from 'react-dnd'
 import {
@@ -15,10 +14,6 @@ import {
   ingredientsListSelector,
   constructorSelector,
 } from 'redux/selectors'
-
-// Components
-import Modal from '../Modal/Modal'
-import OrderDetails from '../OrderDetails/OrderDetails'
 
 // Nested components
 import BurgerItem from './BurgerItem/BurgerItem'
@@ -83,7 +78,7 @@ const BurgerConstructor = () => {
   return (
     <section className={`${styles.burgerConstructor} pt-25`} ref={dropRef}>
       <div className={`${styles.content} mb-10`}>
-        <div>
+        <div className={styles.plugWrapper__top}>
           {bun ? (
             <ConstructorElement
               type="top"
@@ -97,9 +92,11 @@ const BurgerConstructor = () => {
           )}
         </div>
         <ul className={styles.constructorList}>
-          {burgerIngredients || <h2>добавьте ингредиенты</h2>}
+          {burgerIngredients || (
+            <h2 className={styles.plugWrapper}>добавьте ингредиенты</h2>
+          )}
         </ul>
-        <div>
+        <div className={styles.plugWrapper__bottom}>
           {bun ? (
             <ConstructorElement
               type="bottom"
