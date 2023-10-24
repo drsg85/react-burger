@@ -11,13 +11,29 @@ describe('Login test', function () {
     // Go to Profile page
     cy.visit('profile')
 
+    // Getting login form inputs
+    cy.get('[name=email]').as('email')
+    cy.get('[name=password]').as('password')
+
     // Filling the form
-    cy.get('[name=email]').type(`${email}{enter}`)
-    cy.get('[name=password]').type(`${password}{enter}`)
+    cy.get('@email').type(`${email}{enter}`)
+    cy.get('@password').type(`${password}{enter}`)
   })
 
   it('should login and show profile info', function () {
     cy.wait('@loginRequest').its('request.body')
-    cy.get('[name=email]').should('have.value', email)
+    cy.get('@email').should('have.value', email)
+  })
+
+  it('should logout', function () {
+    cy.get('button').contains('Выход').click()
+
+    cy.intercept('POST', 'api/auth/logout', {
+      fixture: 'auth/logoutResponse.json',
+    }).as('logoutResponse')
+
+    cy.wait('@logoutResponse')
+
+    cy.get('[class^=login_form]').should('exist')
   })
 })
